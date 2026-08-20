@@ -19,4 +19,8 @@
   ## Google sign-in
 
   To enable the Google Identity prompt, configure a Google OAuth web client for the deployed URL and set `VITE_GOOGLE_CLIENT_ID` in the deployment environment before building. The current browser-only prototype uses the returned profile to start a local session; production deployments must verify the Google credential server-side and enforce institutional role access.
+
+  ## Publishing with GitHub Pages
+
+  The repository includes a GitHub Actions deployment workflow. Merge the deployment commit into `main`, then open **Settings → Pages** in GitHub and select **GitHub Actions** as the source. The site will be published at `https://ismaeldono-afk.github.io/AQAT/` after the workflow completes. To enable Google sign-in in that build, add `VITE_GOOGLE_CLIENT_ID` as a repository Actions variable under **Settings → Secrets and variables → Actions → Variables**.
   

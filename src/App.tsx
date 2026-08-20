@@ -98,6 +98,7 @@ const SUBMISSION_SETTINGS_KEY = 'aqat-submission-settings-v1';
 const PLATFORM_SETTINGS_KEY = 'aqat-platform-settings-v1';
 const MAX_SCORE = 24;
 const DEFAULT_PLATFORM_NAME = 'Academic Quality, Assurance of Teaching';
+const assetUrl = (filename: string) => `${import.meta.env.BASE_URL}assets/${filename}`;
 
 const CHECKLIST_TEMPLATE: Omit<ChecklistEntry, 'rating' | 'comment' | 'evidence'>[] = [
   {
@@ -442,7 +443,7 @@ export default function App() {
     setIsDownloading(true);
     try {
     const filename = pdfFilename(resultFileName, suggestedResultFilename(verification, platformSettings.resultPrefix));
-    const crest = await getImageData('/assets/png-unitech-result-crest.jpg');
+    const crest = await getImageData(assetUrl('png-unitech-result-crest.jpg'));
     const pdf = new jsPDF({ unit: 'pt', format: 'a4' });
     const pageWidth = pdf.internal.pageSize.getWidth();
     const pageHeight = pdf.internal.pageSize.getHeight();
@@ -622,7 +623,7 @@ export default function App() {
     <main className="app-shell">
       <header className="topbar">
         <div className="brand">
-          <img className="unitech-logo" src="/assets/png-unitech-wordmark.jpg" alt="Papua New Guinea University of Technology" />
+          <img className="unitech-logo" src={assetUrl('png-unitech-wordmark.jpg')} alt="Papua New Guinea University of Technology" />
           <div>
             <p className="eyebrow">Academic Quality, Assurance of Teaching</p>
             <h1>{platformName}</h1>
@@ -1189,7 +1190,7 @@ function LoginPage({ onLogin, onShowTutorial }: { onLogin: (name: string, role: 
   return (
     <main className="login-shell">
       <section className="login-panel">
-        <img className="login-logo" src="/assets/png-unitech-wordmark.jpg" alt="Papua New Guinea University of Technology" />
+        <img className="login-logo" src={assetUrl('png-unitech-wordmark.jpg')} alt="Papua New Guinea University of Technology" />
         <p className="eyebrow accent">AQAT secure access</p>
         <h1>Sign in to the subject verification workflow</h1>
         <p>Administrator access opens the AQAT dashboard and controls the workflow views. Use the dedicated Lecturer login to upload subject evidence and submit the verification sheet.</p>
@@ -1261,7 +1262,7 @@ function AdminDashboard({
     <main className="admin-shell">
       <header className="topbar">
         <div className="brand">
-          <img className="unitech-logo" src="/assets/png-unitech-wordmark.jpg" alt="Papua New Guinea University of Technology" />
+          <img className="unitech-logo" src={assetUrl('png-unitech-wordmark.jpg')} alt="Papua New Guinea University of Technology" />
           <div><p className="eyebrow">Administrator control centre</p><h1>AQAT Dashboard</h1></div>
         </div>
         <div className="topbar-actions"><span className="signed-in-as">Administrator: {administratorName}</span><button className="tutorial-link" onClick={onShowTutorial}>How to use AQAT</button><button className="logout-button" onClick={onLogout}>Sign out</button></div>
@@ -1380,7 +1381,7 @@ function PlatformTutorial({ signedIn, onBack }: { signedIn: boolean; onBack: () 
   return (
     <main className="tutorial-shell">
       <header className="tutorial-header">
-        <img className="login-logo" src="/assets/png-unitech-wordmark.jpg" alt="Papua New Guinea University of Technology" />
+        <img className="login-logo" src={assetUrl('png-unitech-wordmark.jpg')} alt="Papua New Guinea University of Technology" />
         <button className="tutorial-back-button" onClick={onBack}>{signedIn ? 'Return to AQAT' : 'Return to sign in'}</button>
       </header>
       <section className="tutorial-content">

@@ -22,7 +22,7 @@ self.addEventListener('fetch', (event) => {
         return response;
       }).catch(() => {
         if (event.request.mode !== 'navigate') return new Response('', { status: 504, statusText: 'Offline' });
-        return caches.match('/').then((fallback) => fallback ?? new Response(
+        return caches.match(self.registration.scope).then((fallback) => fallback ?? new Response(
           'AQAT is offline. Reconnect once to save this application for offline use.',
           { status: 503, headers: { 'Content-Type': 'text/plain' } },
         ));
