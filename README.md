@@ -1,11 +1,22 @@
 
-  # University Website Design
+  # Academic Quality, Assurance of Teaching
 
-  This is a code bundle for University Website Design. The original project is available at https://www.figma.com/design/trQ7ChPH1Wy3O154F0RhJZ/University-Website-Design.
+  A digital Verification of Subject Files workflow for the Academic Quality, Assurance of Teaching (AQAT), based on the PNG University of Technology assessment sheet.
 
-  ## Running the code
+  The app begins with a local sign-in screen. Administrator access opens the AQAT dashboard, which controls the lecturer, Head of School (HoS), and QA reviewer workflow views. Lecturers submit evidence and teaching allocations; the dedicated **Head of School** login verifies submitted records before AQAT review. Administrators can open or close the lecturer submission window and set a due date. The dashboard also includes persistent **Platform settings** for the platform name, institution name used on PDFs, support email, result filename prefix, and Google sign-in configuration status. The app captures subject and staff details, stores lecturer evidence metadata against 12 scored verification checks, presents the required annual review records, records Head of School verification, and supports AQAT reviewer ratings and Chairperson approval. QA reviewers can rate individual checks or use the **Rate all checklist items** controls to assign Complete (24/24), Incomplete (12/24), or Nil (0/24), then refine individual rows. Workflow state and the local session are persisted in browser local storage. Enter a name in **Rename result file** before download to save the branded PDF result under that name; `.pdf` is applied automatically. It includes subject metadata, ratings, comments, evidence records, total marks, converted result, and Chairperson approval. It can be installed as a phone-friendly web app; after it has loaded once, its runtime cache supports reopening the application while offline.
 
-  Run `npm i` to install the dependencies.
+  The form displays 14 documentation sections: 12 score-bearing checks (maximum score 24) plus the HoS confirmation and AQAT Chairperson approval records. The final AQAT result is calculated as `total / 24 × 4`.
 
-  Run `npm run dev` to start the development server.
+  ## Running locally
+
+  ```bash
+  npm install
+  npm run dev
+  ```
+
+  Use the **Lecturer**, **Head of School**, and **QA reviewer** controls in the application header to move through the workflow roles.
+
+  ## Google sign-in
+
+  To enable the Google Identity prompt, configure a Google OAuth web client for the deployed URL and set `VITE_GOOGLE_CLIENT_ID` in the deployment environment before building. The current browser-only prototype uses the returned profile to start a local session; production deployments must verify the Google credential server-side and enforce institutional role access.
   
