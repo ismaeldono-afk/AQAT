@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
-import { Eye, MapPin, Target, Users, Leaf, Tent, Building, Download, ArrowDown, ArrowUp, CheckSquare, LayoutDashboard, FileText, Settings as SettingsIcon, LogOut, Activity, Database } from 'lucide-react';
+import { Eye, MapPin, Target, Users, Leaf, Tent, Building, Download, ArrowDown, ArrowUp, CheckSquare, LayoutDashboard, FileText, Settings as SettingsIcon, LogOut, Activity, Database, Newspaper } from 'lucide-react';
 
 export default function App() {
   const [view, setView] = useState<'public' | 'admin'>('public');
-  const [adminSection, setAdminSection] = useState<'dashboard' | 'content'>('dashboard');
+  const [adminSection, setAdminSection] = useState<'dashboard' | 'content' | 'news'>('dashboard');
+
+  const [newsItems, setNewsItems] = useState([
+    { id: 1, title: 'Harvest Season Begins', date: 'August 28, 2026', excerpt: 'The coffee harvest has officially started in Yawan Village. Farmers are preparing for the first processing batch.' },
+    { id: 2, title: 'New Solar Dryers Installed', date: 'August 15, 2026', excerpt: 'Thanks to our recent partnership, three new solar dryers have been installed to improve coffee quality.' },
+    { id: 3, title: 'Community Workshop Success', date: 'July 30, 2026', excerpt: 'Over 50 members attended our latest workshop on sustainable farming practices.' }
+  ]);
 
   if (view === 'admin') {
     return (
@@ -19,6 +25,7 @@ export default function App() {
             <button className="w-full flex items-center gap-3 px-4 py-3 hover:bg-[#2a4d34] rounded-lg text-left text-gray-300 hover:text-white transition-colors"><Users size={18}/> Members</button>
             <button className="w-full flex items-center gap-3 px-4 py-3 hover:bg-[#2a4d34] rounded-lg text-left text-gray-300 hover:text-white transition-colors"><FileText size={18}/> Form Submissions</button>
             <button onClick={() => setAdminSection('content')} className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left font-medium transition-colors ${adminSection === 'content' ? 'bg-[#2a4d34] text-white' : 'text-gray-300 hover:bg-[#2a4d34] hover:text-white'}`}><Database size={18}/> Content Management</button>
+            <button onClick={() => setAdminSection('news')} className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left font-medium transition-colors ${adminSection === 'news' ? 'bg-[#2a4d34] text-white' : 'text-gray-300 hover:bg-[#2a4d34] hover:text-white'}`}><Newspaper size={18}/> News Updates</button>
             <button className="w-full flex items-center gap-3 px-4 py-3 hover:bg-[#2a4d34] rounded-lg text-left text-gray-300 hover:text-white transition-colors"><SettingsIcon size={18}/> Settings</button>
           </nav>
           <div className="p-4 border-t border-[#2a4d34]">
@@ -31,7 +38,11 @@ export default function App() {
         {/* Main Content */}
         <div className="flex-1 flex flex-col min-w-0">
           <header className="bg-white shadow-sm px-8 py-4 flex justify-between items-center sticky top-0 z-10">
-            <h1 className="text-2xl font-bold text-gray-800">{adminSection === 'dashboard' ? 'Dashboard Overview' : 'Content Management'}</h1>
+            <h1 className="text-2xl font-bold text-gray-800">
+              {adminSection === 'dashboard' && 'Dashboard Overview'}
+              {adminSection === 'content' && 'Content Management'}
+              {adminSection === 'news' && 'News Updates'}
+            </h1>
             <div className="flex items-center gap-4">
               <span className="text-sm font-medium text-gray-600">Admin User</span>
               <div className="w-10 h-10 bg-[#2a4d34] rounded-full flex items-center justify-center text-white font-bold shadow-sm">A</div>
@@ -147,6 +158,38 @@ export default function App() {
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
+            )}
+            
+            {adminSection === 'news' && (
+              <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                <div className="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+                  <h3 className="font-bold text-gray-800">Manage News Updates</h3>
+                  <button className="px-4 py-2 bg-[#2a4d34] text-white rounded-lg text-sm font-medium hover:bg-[#1a2d1f] transition-colors">Add New Article</button>
+                </div>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left border-collapse min-w-[600px]">
+                    <thead>
+                      <tr className="bg-gray-50 text-gray-500 text-sm border-b border-gray-100">
+                        <th className="px-6 py-4 font-medium">Title</th>
+                        <th className="px-6 py-4 font-medium">Date</th>
+                        <th className="px-6 py-4 font-medium">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100">
+                      {newsItems.map(item => (
+                        <tr key={item.id} className="hover:bg-gray-50/50 transition-colors">
+                          <td className="px-6 py-4 text-sm font-medium text-gray-800">{item.title}</td>
+                          <td className="px-6 py-4 text-sm text-gray-600">{item.date}</td>
+                          <td className="px-6 py-4">
+                            <button className="text-sm text-[#2a4d34] font-bold hover:underline mr-4">Edit</button>
+                            <button className="text-sm text-red-600 font-bold hover:underline">Delete</button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             )}
@@ -426,6 +469,32 @@ export default function App() {
             <p className="text-sm text-[#555]">
               Transparent cooperative governance and capacity-building workshops help local leaders manage programmes, partnerships, and community resources responsibly.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* News Update Section */}
+      <section className="py-20 px-6 bg-white border-t border-[#e2e6e2]" id="news">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="text-center mb-12">
+            <p className="font-sans text-[10px] font-bold tracking-[0.2em] text-[#666] uppercase mb-3">Latest Activity</p>
+            <h2 className="text-3xl font-bold text-[#1a2d1f] mb-6">News Updates</h2>
+            <p className="max-w-2xl mx-auto text-lg text-[#444] leading-relaxed">
+              Stay informed with the latest developments, project milestones, and community news from Yawan Village.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {newsItems.map(item => (
+              <div key={item.id} className="bg-[#F9F8F3] border border-[#d3d9d3] p-8 hover:-translate-y-1 transition-transform">
+                <p className="text-sm font-bold text-[#e6c770] font-sans tracking-wider mb-2">{item.date}</p>
+                <h4 className="font-bold text-[#1a2d1f] text-xl mb-4">{item.title}</h4>
+                <p className="text-sm text-[#555] leading-relaxed mb-6">
+                  {item.excerpt}
+                </p>
+                <button className="text-xs font-bold font-sans tracking-wide text-[#2a4d34] uppercase border-b-2 border-[#e6c770] pb-1 hover:text-[#1a2d1f] transition-colors">Read More</button>
+              </div>
+            ))}
           </div>
         </div>
       </section>
