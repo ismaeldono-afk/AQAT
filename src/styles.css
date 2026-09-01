@@ -181,9 +181,7 @@ input::placeholder, textarea::placeholder { color: #a6929a; } textarea { resize:
 .allocation-upload-panel h3,
 .allocation-records-panel h3,
 .platform-search-heading h2,
-.tutorial-content h1,
-.tutorial-steps h2,
-.tutorial-note h2 { color: #c81d45; }
+.tutorial-content h1 { color: #c81d45; }
 
 .admin-shell,
 .tutorial-shell { background: #f7f7f5; }
