@@ -197,21 +197,10 @@ const emptyVerification = (): Verification => ({
   })),
 });
 
-const exampleVerification = (): Verification => ({
-  ...emptyVerification(),
-  staffNames: 'Ms. Miriam Masibameng',
-  year: '2025',
-  submitted: true,
-  hosPresent: true,
-  hosSigned: true,
-  school: 'School of Surveying',
-  subject: 'PSO213',
-});
-
 function readStoredVerification(): Verification {
   try {
     const stored = window.localStorage.getItem(STORAGE_KEY);
-    if (!stored) return exampleVerification();
+    if (!stored) return emptyVerification();
     const parsed = JSON.parse(stored) as Partial<Verification>;
     if (!Array.isArray(parsed.checklist)) return emptyVerification();
     return { ...emptyVerification(), ...parsed };
