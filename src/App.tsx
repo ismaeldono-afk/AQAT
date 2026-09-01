@@ -126,13 +126,26 @@ const AGRICULTURE_SUMMARY_REPORT: SummaryReportEntry[] = [
   { number: 12, staff: 'Dr. Pandi, Mr. Nano', subjectTitle: 'Animal Management', subjectCode: 'AG311', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
   { number: 13, staff: 'Dr. Eze, Mr. Kiwa', subjectTitle: 'Introduction to Agric. Economics', subjectCode: 'AG112', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
   { number: 14, staff: 'Dr. Dotaona', subjectTitle: 'Agric Entomology', subjectCode: 'AG214', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
-  // The source supplies row 15's rate only; retaining it reconciles its stated sum of 60 and average of 4.00.
-  { number: 15, staff: '—', subjectTitle: '—', subjectCode: '—', level: '—', subjectFileRequired: '—', assessmentComment: 'Source lists No. 15 and rate 4 only.', rate: 4, submissionDate: '—' },
 ];
-const AGRICULTURE_RATE_TOTAL = AGRICULTURE_SUMMARY_REPORT.reduce((total, entry) => total + entry.rate, 0);
-const AGRICULTURE_RATE_AVERAGE = AGRICULTURE_SUMMARY_REPORT.length
-  ? (AGRICULTURE_RATE_TOTAL / AGRICULTURE_SUMMARY_REPORT.length).toFixed(2)
-  : '—';
+const APPLIED_SCIENCE_SUMMARY_REPORT: (SummaryReportEntry & { department: string })[] = [
+  { number: 2, staff: 'A/P Srikanth Bathula', subjectTitle: 'Advance Analytical Chemistry; Research Project', subjectCode: 'CH314; CH411', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '23/04/2026', department: 'Chemistry' },
+  { number: 3, staff: 'A/Prof Janarthanan Gopalakrishnan', subjectTitle: 'Petroleum Chemistry; Research Project', subjectCode: 'CH413; CH411', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '23/04/2026', department: 'Chemistry' },
+  { number: 4, staff: 'Dr. David Timi', subjectTitle: 'Chemistry for Natural Resources; Research Project', subjectCode: 'AS113; CH411', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Fully submitted', rate: 4, submissionDate: '23/04/2026', department: 'Chemistry' },
+  { number: 5, staff: 'Mr. Justin Narimbi', subjectTitle: 'Research Project; Industrial Training', subjectCode: 'CH411; CH400', level: 'UG', subjectFileRequired: '—', assessmentComment: '—', rate: 4, submissionDate: '23/04/2026', department: 'Chemistry' },
+  { number: 6, staff: 'Mr. Jason Wau', subjectTitle: 'Instrumental Analysis; Applied Organic Chemistry; Research Project', subjectCode: 'CH313; CH213; CH411', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '23/04/2026', department: 'Chemistry' },
+  { number: 7, staff: 'Mr. Kaupa Philip', subjectTitle: 'Research Project', subjectCode: 'CH411', level: 'UG', subjectFileRequired: '—', assessmentComment: '—', rate: 4, submissionDate: '23/04/2026', department: 'Chemistry' },
+  { number: 8, staff: 'Ms. Salvina Ku', subjectTitle: 'Foundation Chemistry; Foundation Chemistry; Applied Physical Chemistry', subjectCode: 'CH111; AS111; CH211', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '23/04/2026', department: 'Chemistry' },
+  { number: 9, staff: 'Ms. Milka Vincent', subjectTitle: 'Geometry / Mineral Tech', subjectCode: 'CH312', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '23/04/2026', department: 'Chemistry' },
+  { number: 10, staff: 'Ms. Stephanie Anis', subjectTitle: 'Industrial Organic Chemistry', subjectCode: 'CH412', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '23/04/2026', department: 'Chemistry' },
+  { number: 12, staff: 'Mr. Reilly Nigo', subjectTitle: 'Food Engineering II; Innovation and Entrepreneurship', subjectCode: 'FT311; FT414', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Not submitted', rate: 0, submissionDate: '—', department: 'Food Technology' },
+  { number: 13, staff: 'Dr. Lydia Yalambing', subjectTitle: 'Nutrition I; Advance Nutrition', subjectCode: 'FT214; FT412', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 0, submissionDate: '—', department: 'Food Technology' },
+  { number: 14, staff: 'Dr. Getachew Tolesa', subjectTitle: 'Food Engineering I; Food Chemistry; Food Processing Practical III', subjectCode: 'FT211; FT212; FT413', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '23/04/2026', department: 'Food Technology' },
+  { number: 15, staff: 'Dr. Selvakumar Palaniappan', subjectTitle: 'Food Microbiology; Food Microbiology and Biotechnology', subjectCode: 'FT213; FT313', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '23/04/2026', department: 'Food Technology' },
+  { number: 16, staff: 'Mrs. Sogoing Denana', subjectTitle: 'Quality Assurance', subjectCode: 'FT312', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '23/04/2026', department: 'Food Technology' },
+  { number: 17, staff: 'Mr. Nigel Kiaka', subjectTitle: 'Food Engineering I', subjectCode: 'FT211', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '23/04/2026', department: 'Food Technology' },
+  { number: 18, staff: 'Mrs. Rag Gubag Sipou', subjectTitle: 'Food Microbiology; Food Microbiology and Biotechnology', subjectCode: 'FT213; FT313', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '23/04/2026', department: 'Food Technology' },
+  { number: 19, staff: 'Ms. Dilkay Bau', subjectTitle: 'Food Chemistry; Quality Assurance', subjectCode: 'FT212; FT312', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '23/04/2026', department: 'Food Technology' },
+];
 
 const CHECKLIST_TEMPLATE: Omit<ChecklistEntry, 'rating' | 'comment' | 'evidence'>[] = [
   {
@@ -1323,7 +1336,35 @@ function AdminDashboard({
                 ))}
               </tbody>
               <tfoot>
-                <tr><th colSpan={7}>Summary</th><td>Sum: {AGRICULTURE_RATE_TOTAL}</td><td>Average: {AGRICULTURE_RATE_AVERAGE}</td></tr>
+                <tr><th colSpan={9}>Source-reported summary: Sum 60 · Average 4.00</th></tr>
+              </tfoot>
+            </table>
+          </div>
+        </section>
+        <section className="summary-report panel" aria-labelledby="applied-science-summary-title">
+          <div className="panel-heading">
+            <div>
+              <p className="eyebrow accent">AQAT summary report data</p>
+              <h2 id="applied-science-summary-title">School of Applied Science · 2026 Semester One (1)</h2>
+            </div>
+            <span className="autosave">{APPLIED_SCIENCE_SUMMARY_REPORT.length} staff records</span>
+          </div>
+          <div className="summary-report-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>No.</th><th>Department</th><th>Lecturer / staff</th><th>Subject title</th><th>Subject code</th><th>PG/UG</th><th>Subject file required</th><th>Assessment</th><th>Comments</th><th>Rate</th><th>Submission date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {APPLIED_SCIENCE_SUMMARY_REPORT.map((entry) => (
+                  <tr key={entry.number}>
+                    <td>{entry.number}</td><td>{entry.department}</td><td>{entry.staff}</td><td>{entry.subjectTitle}</td><td>{entry.subjectCode}</td><td>{entry.level}</td><td>{entry.subjectFileRequired}</td><td>{entry.assessmentComment}</td><td>{entry.rate ? 'Stacked neatly on CD/GD' : '—'}</td><td>{entry.rate}</td><td>{entry.submissionDate}</td>
+                  </tr>
+                ))}
+              </tbody>
+              <tfoot>
+                <tr><th colSpan={11}>Source-reported summary: Sum 92 · Average 3.50</th></tr>
               </tfoot>
             </table>
           </div>
