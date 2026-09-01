@@ -188,10 +188,6 @@ input::placeholder, textarea::placeholder { color: #a6929a; } textarea { resize:
 .admin-shell,
 .tutorial-shell { background: #f7f7f5; }
 
-.admin-dashboard-link:hover,
-.logout-button:hover,
-.tutorial-link:hover { background: #a91639; }
-
 .step.complete { color: #c81d45; }
 .step.complete > span,
 .step.complete i { background: #c81d45; }
