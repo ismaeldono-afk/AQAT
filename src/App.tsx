@@ -175,14 +175,14 @@ const CHECKLIST_TEMPLATE: Omit<ChecklistEntry, 'rating' | 'comment' | 'evidence'
 ];
 
 const emptyVerification = (): Verification => ({
-  staffNames: 'Ms. Miriam Masibameng',
+  staffNames: '',
   semester: '1',
-  year: '2025',
-  submitted: true,
-  hosPresent: true,
-  hosSigned: true,
-  school: 'School of Surveying',
-  subject: 'PSO213',
+  year: String(new Date().getFullYear()),
+  submitted: null,
+  hosPresent: null,
+  hosSigned: null,
+  school: '',
+  subject: '',
   subjectCode: '',
   hosName: '',
   chairName: '',
@@ -197,10 +197,21 @@ const emptyVerification = (): Verification => ({
   })),
 });
 
+const exampleVerification = (): Verification => ({
+  ...emptyVerification(),
+  staffNames: 'Ms. Miriam Masibameng',
+  year: '2025',
+  submitted: true,
+  hosPresent: true,
+  hosSigned: true,
+  school: 'School of Surveying',
+  subject: 'PSO213',
+});
+
 function readStoredVerification(): Verification {
   try {
     const stored = window.localStorage.getItem(STORAGE_KEY);
-    if (!stored) return emptyVerification();
+    if (!stored) return exampleVerification();
     const parsed = JSON.parse(stored) as Partial<Verification>;
     if (!Array.isArray(parsed.checklist)) return emptyVerification();
     return { ...emptyVerification(), ...parsed };
