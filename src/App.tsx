@@ -126,6 +126,7 @@ const AGRICULTURE_SUMMARY_REPORT: SummaryReportEntry[] = [
   { number: 12, staff: 'Dr. Pandi, Mr. Nano', subjectTitle: 'Animal Management', subjectCode: 'AG311', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
   { number: 13, staff: 'Dr. Eze, Mr. Kiwa', subjectTitle: 'Introduction to Agric. Economics', subjectCode: 'AG112', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
   { number: 14, staff: 'Dr. Dotaona', subjectTitle: 'Agric Entomology', subjectCode: 'AG214', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+  // The source supplies row 15's rate only; retaining it reconciles its stated sum of 60 and average of 4.00.
   { number: 15, staff: '—', subjectTitle: '—', subjectCode: '—', level: '—', subjectFileRequired: '—', assessmentComment: 'Source lists No. 15 and rate 4 only.', rate: 4, submissionDate: '—' },
 ];
 
