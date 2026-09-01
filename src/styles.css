@@ -43,9 +43,9 @@ button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-
 .hero h2 { max-width: 680px; font-size: clamp(25px, 3vw, 39px); line-height: 1.28; }
 .hero p:not(.eyebrow) { max-width: 720px; color: #65515b; line-height: 1.65; margin: 16px 0 0; }
 .score-card { min-width: 215px; background: #c81d45; color: white; padding: 18px 22px; border-radius: 8px; box-shadow: 0 12px 25px #c81d4522; }
-.score-card span, .score-card small { display: block; font: 500 10px 'DM Mono', monospace; letter-spacing: .08em; text-transform: uppercase; color: #f3dcae; }
+.score-card span, .score-card small { display: block; font: 500 10px 'DM Mono', monospace; letter-spacing: .08em; text-transform: uppercase; color: #ffffffbf; }
 .score-card strong { display: block; font: 700 36px 'Libre Baskerville', serif; margin: 6px 0 2px; }.score-card strong small { display: inline; font: inherit; }
-.score-card b { color: #f4c44f; font: 700 15px 'Libre Baskerville', serif; }.score-card b small { display: inline; font: inherit; color: #f4c44f; }
+.score-card b { color: #fff; font: 700 15px 'Libre Baskerville', serif; }.score-card b small { display: inline; font: inherit; color: #fff; }
 .notice { background: #fff8e9; border: 1px solid #e5c176; color: #65371b; border-radius: 6px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; margin-bottom: 20px; }
 .notice button { border: 0; background: transparent; color: inherit; font-size: 20px; }
 
@@ -75,7 +75,7 @@ input::placeholder, textarea::placeholder { color: #a6929a; } textarea { resize:
 .bulk-rating { margin-top: 11px; border: 1px solid #ead7ad; background: #fff9ea; padding: 11px; }.bulk-rating > span { display: block; color: #684b21; font-size: 10px; font-weight: 800; margin-bottom: 8px; }.bulk-rating > div { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; }.bulk-rating button { min-height: 34px; border: 1px solid #d9bf7d; border-radius: 4px; background: white; color: #6d4a16; padding: 5px; font-size: 9px; font-weight: 800; }.bulk-rating button:hover { background: #f8dfa1; }
 .score-panel { background: #171717; color: #fff; border-color: #171717; }.score-panel .eyebrow { color: #f7b4c5; }.score-line { justify-content: space-between; border-bottom: 1px solid #5b5b5b; padding: 12px 0; font-size: 12px; }.score-line strong { font-family: 'DM Mono', monospace; }.score-line.large strong { color: #f35b7e; font: 700 27px 'Libre Baskerville', serif; }.score-line small { font: 400 12px 'DM Mono', monospace; }.score-panel progress { margin: 16px 0 8px; accent-color: #c81d45; }.score-panel p { color: #f7d7df; font-size: 10px; line-height: 1.6; margin: 0; }
 .result-file-name, .dashboard-file-name { display: grid; gap: 5px; margin-top: 15px; }.result-file-name > span, .dashboard-file-name > span { font-size: 10px; font-weight: 800; }.result-file-name input { border-color: #cf87a0; color: #4b1129; background: #fffdf9; padding: 9px; font-size: 12px; }.result-file-name small { color: #f5dfb7; font-size: 9px; }.dashboard-file-name { margin-bottom: 13px; }.dashboard-file-name > span { color: #654b57; }.dashboard-file-name input { font-size: 12px; padding: 9px; }.dashboard-file-name small { color: #856d77; font-size: 9px; }
-.download-result-button { width: 100%; margin-top: 17px; border: 1px solid #f4c44f; background: #f4c44f; color: #4b1129; border-radius: 5px; padding: 10px 12px; font-size: 12px; font-weight: 800; }.download-result-button:hover { background: #ffe09a; border-color: #ffe09a; }
+.download-result-button { width: 100%; margin-top: 17px; border: 1px solid #c81d45; background: #c81d45; color: #fff; border-radius: 5px; padding: 10px 12px; font-size: 12px; font-weight: 800; }.download-result-button:hover { background: #a91639; border-color: #a91639; }
 .reset-button { border: 0; color: #7b646d; font-size: 11px; background: transparent; text-align: center; padding: 8px; }.reset-button:hover { color: #8d2047; text-decoration: underline; }
 
 .login-shell { min-height: 100vh; padding: 36px 20px; display: grid; place-items: center; background: linear-gradient(135deg, #fff, #f5e7eb); }
