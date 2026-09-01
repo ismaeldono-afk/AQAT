@@ -126,7 +126,7 @@ const AGRICULTURE_SUMMARY_REPORT: SummaryReportEntry[] = [
   { number: 12, staff: 'Dr. Pandi, Mr. Nano', subjectTitle: 'Animal Management', subjectCode: 'AG311', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
   { number: 13, staff: 'Dr. Eze, Mr. Kiwa', subjectTitle: 'Introduction to Agric. Economics', subjectCode: 'AG112', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
   { number: 14, staff: 'Dr. Dotaona', subjectTitle: 'Agric Entomology', subjectCode: 'AG214', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
-  { number: 15, staff: 'Not provided in source', subjectTitle: 'Not provided in source', subjectCode: 'Not provided', level: 'Not provided', subjectFileRequired: 'Not provided', assessmentComment: 'Not provided in source', rate: 4, submissionDate: 'Not provided' },
+  { number: 15, staff: '—', subjectTitle: '—', subjectCode: '—', level: '—', subjectFileRequired: '—', assessmentComment: 'Source lists No. 15 and rate 4 only.', rate: 4, submissionDate: '—' },
 ];
 
 const CHECKLIST_TEMPLATE: Omit<ChecklistEntry, 'rating' | 'comment' | 'evidence'>[] = [
@@ -1319,7 +1319,7 @@ function AdminDashboard({
                 ))}
               </tbody>
               <tfoot>
-                <tr><th colSpan={7}>Summary</th><td>Sum {agricultureRateTotal}</td><td>Average {(agricultureRateTotal / AGRICULTURE_SUMMARY_REPORT.length).toFixed(2)}</td></tr>
+                <tr><th colSpan={7}>Summary</th><td>Sum: {agricultureRateTotal}</td><td>Average: {AGRICULTURE_SUMMARY_REPORT.length ? (agricultureRateTotal / AGRICULTURE_SUMMARY_REPORT.length).toFixed(2) : '—'}</td></tr>
               </tfoot>
             </table>
           </div>
