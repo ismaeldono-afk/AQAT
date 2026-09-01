@@ -8,6 +8,7 @@
   The form displays the 12 score-bearing checks from the AQAT sheet (maximum score 24), plus examiners’ report and annual-review supporting records. The final AQAT result is calculated as `total / 24 × 4`.
 
   The administrator dashboard includes the supplied School of Agriculture 2026 Semester One AQAT summary report, with its 14 subject-file records, assessment comments, rates, submission dates, and reported summary.
+  It also includes the supplied School of Applied Science and School of Architecture & Construction Management 2026 Semester One AQAT summary reports.
 
   ## Running locally
 

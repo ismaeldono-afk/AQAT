@@ -147,6 +147,24 @@ const APPLIED_SCIENCE_SUMMARY_REPORT: (SummaryReportEntry & { department: string
   { number: 18, staff: 'Mrs. Rag Gubag Sipou', subjectTitle: 'Food Microbiology; Food Microbiology and Biotechnology', subjectCode: 'FT213; FT313', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '23/04/2026', department: 'Food Technology' },
   { number: 19, staff: 'Ms. Dilkay Bau', subjectTitle: 'Food Chemistry; Quality Assurance', subjectCode: 'FT212; FT312', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '23/04/2026', department: 'Food Technology' },
 ];
+const ARCHITECTURE_SUMMARY_COMMENT = 'Stacked neatly in GD/CD';
+const ARCHITECTURE_SUMMARY_REPORT: SummaryReportEntry[] = [
+  { number: 1, staff: 'Dr Jerry Walliah (HoS)', subjectTitle: 'Introduction to Research in Architecture & Construction Management', subjectCode: 'AR 119', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '8/07/2026' },
+  { number: 2, staff: 'Professor Cletus Gonduan (Dean)', subjectTitle: 'Melanesian Built Environment', subjectCode: 'AR312', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '16/07/2026' },
+  { number: 3, staff: 'Dr Andrew Sariman', subjectTitle: 'Building Science', subjectCode: 'AR117', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '8/07/2026' },
+  { number: 4, staff: 'Dr Raheleh Rostami', subjectTitle: 'History of Architecture', subjectCode: 'AR212', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '8/07/2026' },
+  { number: 4, staff: 'Dr Raheleh Rostami', subjectTitle: 'Ecological Sustainable Development', subjectCode: 'AR317', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '8/07/2026' },
+  { number: 5, staff: 'Dr Winter Petilani', subjectTitle: 'Integrated Architectural Design V', subjectCode: 'AR310', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '8/07/2026' },
+  { number: 6, staff: 'Mathew Pomoso', subjectTitle: 'Quantities and Estimating III', subjectCode: 'CM310', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '8/07/2026' },
+  { number: 7, staff: 'Clive Paigala', subjectTitle: 'Structures', subjectCode: 'AR214', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '8/07/2026' },
+  { number: 8, staff: 'Magdelyne Kuluwah', subjectTitle: 'Introduction to Construction Management', subjectCode: 'CM110', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '8/07/2026' },
+  { number: 8, staff: 'Magdelyne Kuluwah', subjectTitle: 'Construction Management III', subjectCode: 'CM212', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '8/07/2026' },
+  { number: 9, staff: 'Stephanie Kisokau', subjectTitle: 'Building Systems I', subjectCode: 'AR213', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '8/07/2026' },
+  { number: 10, staff: 'Lincoln Sauwa', subjectTitle: 'IN', subjectCode: 'CM410', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '8/07/2026' },
+  { number: 11, staff: 'Donovan Akui', subjectTitle: 'Quantities and Estimating I', subjectCode: 'CM210', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '8/07/2026' },
+  { number: 12, staff: 'Dr Meysam Khoshnava', subjectTitle: 'CM419 (UG, non-examinable); CM513, CM518 & CM619 (PG)', subjectCode: 'CM419; CM513; CM518; CM619', level: 'UG / PG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '27/07/2026' },
+  { number: 13, staff: 'Vincent Kifas', subjectTitle: 'Construction Theory IV', subjectCode: 'CM311', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '15/07/2026' },
+];
 
 const CHECKLIST_TEMPLATE: Omit<ChecklistEntry, 'rating' | 'comment' | 'evidence'>[] = [
   {
@@ -1370,6 +1388,34 @@ function AdminDashboard({
             </table>
           </div>
           <p className="summary-source-note">The supplied report does not include records for No. 1 or No. 11. It records a rate of 0 for No. 12 and No. 13.</p>
+        </section>
+        <section className="summary-report panel" aria-labelledby="architecture-summary-title">
+          <div className="panel-heading">
+            <div>
+              <p className="eyebrow accent">AQAT summary report data</p>
+              <h2 id="architecture-summary-title">School of Architecture & Construction Management · 2026 Semester One (1)</h2>
+            </div>
+            <span className="autosave">{ARCHITECTURE_SUMMARY_REPORT.length} course records</span>
+          </div>
+          <div className="summary-report-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>No.</th><th>Lecturer / staff</th><th>Subject title</th><th>Course code</th><th>PG/UG</th><th>Subject file required</th><th>Assessment</th><th>Comments</th><th>Rate</th><th>Submission date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ARCHITECTURE_SUMMARY_REPORT.map((entry, index) => (
+                  <tr key={`${entry.number}-${entry.subjectCode}-${index}`}>
+                    <td>{entry.number}</td><td>{entry.staff}</td><td>{entry.subjectTitle}</td><td>{entry.subjectCode}</td><td>{entry.level}</td><td>{entry.subjectFileRequired}</td><td>{entry.assessmentComment}</td><td>{ARCHITECTURE_SUMMARY_COMMENT}</td><td>{entry.rate}</td><td>{entry.submissionDate}</td>
+                  </tr>
+                ))}
+              </tbody>
+              <tfoot>
+                <tr><th colSpan={10}>Source-reported summary: Sum 60 · Average 4.00</th></tr>
+              </tfoot>
+            </table>
+          </div>
         </section>
         <section className="dashboard-actions">
           <div>
