@@ -67,7 +67,6 @@ interface ChecklistEntry {
   section: number;
   title: string;
   guidance: string;
-  annualReview?: boolean;
   rating: Rating;
   comment: string;
   evidence: Evidence[];
@@ -102,89 +101,88 @@ const assetUrl = (filename: string) => `${import.meta.env.BASE_URL}assets/${file
 
 const CHECKLIST_TEMPLATE: Omit<ChecklistEntry, 'rating' | 'comment' | 'evidence'>[] = [
   {
-    id: 'subject-outline',
+    id: 'lecture-plan',
     section: 1,
-    title: 'Subject outline and approved course description',
-    guidance: 'Current outline, learning outcomes, weekly schedule and assessment weighting.',
+    title: 'Lecture plan',
+    guidance: 'Current lecture plan for the subject.',
   },
   {
-    id: 'teaching-plan',
+    id: 'lecture-notes',
     section: 2,
-    title: 'Teaching plan and delivery materials',
-    guidance: 'Lesson plan, lecture notes, slides, readings and learning resources.',
+    title: 'Lecture notes',
+    guidance: 'Lecture notes and associated delivery materials.',
   },
   {
-    id: 'tutorial-lab',
+    id: 'tutorials',
     section: 3,
-    title: 'Tutorial, practical or laboratory materials',
-    guidance: 'Worksheets, activity instructions, solutions and laboratory guides where applicable.',
+    title: 'Tutorials (if compulsory only)',
+    guidance: 'Tutorial materials, instructions and solutions where tutorials are compulsory.',
   },
   {
-    id: 'assessment-design',
+    id: 'assignments',
     section: 4,
-    title: 'Assessment tasks and marking criteria',
-    guidance: 'Assignment questions, rubrics, marking guides and model answers.',
+    title: 'Assignments with solutions and 3 marked copies',
+    guidance: 'Assignment questions, solutions and three marked student copies.',
   },
   {
-    id: 'assessment-feedback',
+    id: 'laboratory-assignments',
     section: 5,
-    title: 'Marked student work and feedback samples',
-    guidance: 'De-identified high, middle and low samples showing feedback and marking consistency.',
+    title: 'Laboratory assignments with 3 marked copies',
+    guidance: 'Laboratory assignments and three marked student copies.',
   },
   {
-    id: 'moderation',
+    id: 'quizzes',
     section: 6,
-    title: 'Internal or external moderation records',
-    guidance: 'Moderation advice, responses and signed moderation records.',
+    title: 'Quizzes with solutions and 3 marked copies',
+    guidance: 'Quiz questions, solutions and three marked student copies.',
   },
   {
-    id: 'attendance',
+    id: 'tests',
     section: 7,
-    title: 'Class attendance and engagement record',
-    guidance: 'Attendance register, participation evidence and follow-up where attendance is low.',
+    title: 'Tests with solutions and 3 marked copies',
+    guidance: 'Test questions, solutions and three marked student copies.',
   },
   {
-    id: 'student-feedback',
+    id: 'field-visit',
     section: 8,
-    title: 'Student evaluation and improvement response',
-    guidance: 'SET summary or equivalent student feedback with an action response.',
+    title: 'Field visit / industrial training report',
+    guidance: 'Field visit or industrial training report where applicable.',
   },
   {
-    id: 'final-exam',
+    id: 'student-evaluation',
     section: 9,
-    title: 'Final examination and marking materials',
-    guidance: 'Current paper, previous paper where required, marking guide and examination approval evidence.',
+    title: 'Student evaluation summary of teachers',
+    guidance: 'Summary of student evaluations for the teacher.',
   },
   {
-    id: 'results',
+    id: 'final-exam-paper',
     section: 10,
-    title: 'Results, grade approval and records',
-    guidance: 'Verified marks, grade sheet and relevant results approval evidence.',
+    title: 'Final exam question paper and solutions',
+    guidance: 'Final examination question paper and solutions.',
   },
   {
-    id: 'subject-review',
+    id: 'exam-moderation',
     section: 11,
-    title: 'Subject reflection and improvement plan',
-    guidance: 'Lecturer reflection identifying outcomes, issues and actions for the next offering.',
+    title: 'Copy of final exam moderation sheet',
+    guidance: 'Completed final examination moderation sheet.',
   },
   {
-    id: 'annual-review',
+    id: 'marked-exam-scripts',
     section: 12,
-    title: 'Annual subject review evidence',
-    guidance: 'A consolidated annual review pack covering the three required records below.',
-    annualReview: true,
+    title: 'Copies of marked exam scripts',
+    guidance: 'Copies of marked final examination scripts.',
   },
 ];
 
 const emptyVerification = (): Verification => ({
-  staffNames: '',
+  staffNames: 'Ms. Miriam Masibameng',
   semester: '1',
-  year: String(new Date().getFullYear()),
-  submitted: null,
-  hosPresent: null,
-  hosSigned: null,
-  school: '',
-  subject: '',
+  year: '2025',
+  submitted: true,
+  hosPresent: true,
+  hosSigned: true,
+  school: 'School of Surveying',
+  subject: 'PSO213',
   subjectCode: '',
   hosName: '',
   chairName: '',
@@ -739,7 +737,7 @@ export default function App() {
           <section className="panel checklist-panel" aria-labelledby="checklist-title">
             <div className="panel-heading checklist-heading">
               <div>
-                <p className="eyebrow accent">14 documentation sections · 12 scored checks</p>
+                <p className="eyebrow accent">12 scored checks · 2 supporting records</p>
                 <h2 id="checklist-title">Checklist, evidence and reviewer assessment</h2>
                 <p>Complete, Incomplete and Nil are mutually exclusive ratings. The 12 scored checks total a maximum of 24 points.</p>
               </div>
@@ -759,16 +757,6 @@ export default function App() {
                   <div className="check-main">
                     <h3>{entry.title}</h3>
                     <p>{entry.guidance}</p>
-                    {entry.annualReview && (
-                      <div className="annual-review">
-                        <span>Annual review must include:</span>
-                        <ul>
-                          <li>Continuous assessment break-up</li>
-                          <li>Consolidation attendance percentage</li>
-                          <li>CA and final examination marks with grade</li>
-                        </ul>
-                      </div>
-                    )}
                     <div className="evidence-list" aria-label={`Evidence for ${entry.title}`}>
                       {entry.evidence.map((file, index) => (
                         <span className="file-chip" key={`${file.name}-${index}`}>
@@ -801,13 +789,13 @@ export default function App() {
               ))}
               <article className="supporting-row">
                 <span className="check-number">13</span>
-                <div><h3>HoS confirmation record</h3><p>Head of School name, presence and signature confirmation are recorded in the workflow section below.</p></div>
-                <span className="not-scored">Workflow record</span>
+                <div><h3>Examiners’ report</h3><p>Retain the completed examiner’s report with the subject file.</p></div>
+                <span className="not-scored">Supporting record</span>
               </article>
               <article className="supporting-row">
                 <span className="check-number">14</span>
-                <div><h3>AQAT Chairperson approval</h3><p>Final approval and signature are retained with the completed assessment sheet.</p></div>
-                <span className="not-scored">Workflow record</span>
+                <div><h3>Annual review of the subject</h3><p>Include the continuous assessment break-up, consolidation attendance percentage, and CA plus final exam marks and grade.</p></div>
+                <span className="not-scored">Supporting record</span>
               </article>
             </div>
           </section>
@@ -819,7 +807,7 @@ export default function App() {
             <h2>{reviewerMode ? 'AQAT reviewer desk' : hosMode ? 'Head of School desk' : 'Lecturer desk'}</h2>
             {lecturerMode && (
               <>
-                <p className="muted">Attach evidence to every scored check, then submit the sheet to the Head of School.</p>
+                <p className="muted">Attach evidence for each checklist item, then submit the sheet to the Head of School.</p>
                 {!isSubmissionWindowOpen(submissionSettings) && <p className="submission-window-notice">{submissionWindowMessage(submissionSettings)}</p>}
                 <button className="button primary" onClick={submitToHos} disabled={verification.status !== 'draft' || !isSubmissionWindowOpen(submissionSettings)}>Submit to Head of School</button>
                 <div className="completion-meter">
@@ -830,7 +818,7 @@ export default function App() {
             )}
             {hosMode && (
               <>
-                <p className="muted">Confirm that the lecturer has presented a complete subject file, then record your name, presence and signature before forwarding the record to AQAT.</p>
+                <p className="muted">Confirm that the lecturer has presented the subject file, then record your name, presence and signature before forwarding the record to AQAT.</p>
                 <Field label="Head of School name">
                   <input value={verification.hosName} onChange={(event) => updateDetails('hosName', event.target.value)} placeholder={session.name} disabled={verification.status !== 'submitted'} />
                 </Field>
