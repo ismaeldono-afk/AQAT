@@ -81,7 +81,7 @@ input::placeholder, textarea::placeholder { color: #a6929a; } textarea { resize:
 .login-shell { min-height: 100vh; padding: 36px 20px; display: grid; place-items: center; background: linear-gradient(135deg, #fff, #f5e7eb); }
 .login-panel { width: min(100%, 510px); background: white; border: 1px solid #e4d4d5; border-top: 7px solid #c81d45; border-radius: 8px; box-shadow: 0 20px 50px #c81d451d; padding: 35px; }
 .login-logo { max-width: 100%; width: 310px; height: auto; display: block; margin-bottom: 28px; }
-.login-panel h1, .admin-content h1 { color: #4e1230; font: 700 27px/1.35 'Libre Baskerville', serif; margin: 0; }
+.login-panel h1, .admin-content h1 { color: #c81d45; font: 700 27px/1.35 'Libre Baskerville', serif; margin: 0; }
 .login-panel > p:not(.eyebrow) { color: #705a65; font-size: 13px; line-height: 1.65; margin: 14px 0 25px; }
 .login-panel form { display: grid; gap: 17px; }
 .login-panel .button { margin-top: 4px; }
@@ -173,8 +173,6 @@ input::placeholder, textarea::placeholder { color: #a6929a; } textarea { resize:
 .eyebrow.accent,
 .workspace-nav button.active,
 .check-number,
-.admin-content h1,
-.login-panel h1,
 .dashboard-cards strong,
 .dashboard-actions h2,
 .submission-settings h2,
