@@ -163,9 +163,9 @@ input::placeholder, textarea::placeholder { color: #a6929a; } textarea { resize:
 .tutorial-intro { max-width: 690px; color: #705a65; font-size: 14px; line-height: 1.7; margin: 15px 0 29px; }
 .tutorial-steps { display: grid; gap: 12px; }
 .tutorial-steps article { display: grid; grid-template-columns: 38px 1fr; gap: 15px; background: white; border: 1px solid #e4d7d7; border-radius: 7px; padding: 17px; }
-.tutorial-steps article > span { width: 29px; height: 29px; border-radius: 50%; display: grid; place-items: center; background: #74183c; color: #f9d881; font: 500 12px 'DM Mono', monospace; }
-.tutorial-steps h2, .tutorial-note h2 { color: #4e1230; font: 700 15px 'Libre Baskerville', serif; margin: 2px 0 5px; }
-.tutorial-steps p, .tutorial-note p { color: #705a65; font-size: 12px; line-height: 1.65; margin: 0; }
+.tutorial-steps article > span { width: 29px; height: 29px; border-radius: 50%; display: grid; place-items: center; background: #c81d45; color: #fff; font: 500 12px 'DM Mono', monospace; }
+.tutorial-steps h2, .tutorial-note h2 { color: #c81d45; font: 700 15px 'Libre Baskerville', serif; margin: 2px 0 5px; }
+.tutorial-steps p, .tutorial-note p { color: #4a4a4a; font-size: 12px; line-height: 1.65; margin: 0; }
 .tutorial-note { border-left: 4px solid #c81d45; background: #fff2f5; margin-top: 22px; padding: 17px 19px; }
 .mobile-app-nav { display: none; }
 
@@ -194,8 +194,7 @@ input::placeholder, textarea::placeholder { color: #a6929a; } textarea { resize:
 
 .step.complete { color: #c81d45; }
 .step.complete > span,
-.step.complete i,
-.tutorial-steps article > span { background: #c81d45; }
+.step.complete i { background: #c81d45; }
 
 .check-number { background: #fff0f3; }
 .check-main h3,
