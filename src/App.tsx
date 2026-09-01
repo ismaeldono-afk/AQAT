@@ -338,6 +338,61 @@ export default function App() {
           </div>
         </div>
 
+        {/* PACD Support Box */}
+        <div className="bg-[#1a2d1f] text-white border-2 border-[#1a2d1f] p-8 md:p-10 mb-8 relative">
+          <div className="absolute top-0 right-0 bg-[#e6c770] text-[#1a2d1f] font-sans text-[10px] font-bold px-4 py-1 rounded-bl-lg">
+            PACD Intervention
+          </div>
+          <div className="flex items-center gap-3 mb-6 border-b border-[#2a4d34] pb-4">
+            <div className="w-10 h-10 bg-[#e6c770] flex items-center justify-center rounded-sm shrink-0">
+              <Target className="text-[#1a2d1f]" size={20} />
+            </div>
+            <div>
+              <p className="font-sans text-[10px] font-bold tracking-widest text-[#e6c770] uppercase">Strategic Intervention</p>
+              <h3 className="text-2xl font-bold text-white">Assisting Meptain Agriculture at Yawan</h3>
+            </div>
+          </div>
+          
+          <div className="text-[13px] text-gray-300 leading-[1.8]">
+            <p className="mb-6 text-sm">
+              The <strong>Papua New Guinea Agriculture Commercialization and Diversification Project (PACD)</strong>, in partnership with the <strong>Coffee Industry Corporation (CIC)</strong> and the <strong>Tree Kangaroo Conservation Programme (TKCP)</strong>, has heavily invested in Yawan Village to support local, remote coffee farmers. Located in the extremely isolated YUS Conservation Area (Kabwum District, Morobe Province), Yawan has no road access and relies heavily on agricultural intervention to bridge the gap to regional markets.
+            </p>
+            
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="bg-[#2a4d34] p-6 rounded-lg border border-[#3b6645]">
+                <h4 className="font-bold text-[#e6c770] text-base mb-3 flex items-center gap-2">
+                  <span className="text-xl">☕</span> Industry Funding & Market Support
+                </h4>
+                <ul className="list-disc pl-4 space-y-3">
+                  <li><strong>Direct Capital Injections:</strong> The CIC injected K1 million specifically targeting Yawan and neighboring regions (Teptep, Bungawat, Sapmanga) to boost rural livelihoods.</li>
+                  <li><strong>Overcoming Market Isolation:</strong> Partnering alongside TKCP, the project addresses transportation hurdles, helping remote smallholders generate revenue despite the village requiring a multi-day walk or air freight to transport goods.</li>
+                </ul>
+              </div>
+              
+              <div className="bg-[#2a4d34] p-6 rounded-lg border border-[#3b6645]">
+                <h4 className="font-bold text-[#e6c770] text-base mb-3 flex items-center gap-2">
+                  <span className="text-xl">🤝</span> Partnerships & Group Marketing
+                </h4>
+                <ul className="list-disc pl-4 space-y-3">
+                  <li><strong>Co-operative Formation:</strong> The program assists marginalized rural growers in organizing into formal cooperative societies.</li>
+                  <li><strong>Bargaining Power:</strong> Rather than selling individually at low prices, farmers are trained in group marketing to increase profit margins and improve household income.</li>
+                </ul>
+              </div>
+              
+              <div className="bg-[#2a4d34] p-6 rounded-lg border border-[#3b6645]">
+                <h4 className="font-bold text-[#e6c770] text-base mb-3 flex items-center gap-2">
+                  <span className="text-xl">📈</span> Training & Diversification
+                </h4>
+                <ul className="list-disc pl-4 space-y-3">
+                  <li><strong>Agricultural Innovation:</strong> Farmers receive critical training on crop quality testing and farm maintenance to elevate commercial value.</li>
+                  <li><strong>Financial Literacy:</strong> PACD provides families with essential budgeting skills, introducing on-site banking services.</li>
+                  <li><strong>Gender & Social Inclusion:</strong> Programs are targeted at improving family-level financial collaboration between men and women.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* 4 Cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-[#F9F8F3] border border-[#d3d9d3] p-6 text-center hover:bg-white transition-colors">
