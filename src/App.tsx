@@ -454,7 +454,12 @@ export default function App() {
 
         {/* Full-width Community Development Section */}
         <div className="mt-6 bg-white border border-[#d3d9d3] flex flex-col lg:flex-row">
-          <img src="https://images.unsplash.com/photo-1529156069898-49953eb1f5ff?auto=format&fit=crop&q=80" alt="Community" className="w-full lg:w-1/3 object-cover h-64 lg:h-auto" />
+          <div className="w-full lg:w-1/3 flex flex-col">
+            <img src="/nungon-team.png" alt="Nungon Team working on laptops" className="w-full object-cover flex-1" />
+            <div className="bg-[#1a2d1f] text-[#e6c770] p-4 text-xs font-sans">
+              <strong>Nungon Team (from left):</strong> Stanly Girip, James Jio, Lyn Ögate, Nathalyne Ögate
+            </div>
+          </div>
           <div className="p-8 lg:p-10 flex-1">
             <p className="font-sans text-[10px] font-bold tracking-[0.2em] text-[#666] uppercase mb-2">Partnership</p>
             <h4 className="font-bold text-[#1a2d1f] text-2xl mb-6">Community Development & Western Sydney University</h4>
@@ -469,18 +474,22 @@ export default function App() {
                 </p>
                 <h5 className="font-bold text-[#1a2d1f] text-base mt-6 mb-2">The Cognitive Marvel</h5>
                 <p>
-                  Nungon relies heavily on a grammatical structure known as clause chaining. Instead of breaking thoughts into short sentences, speakers string many "medial" clauses together, terminating the entire chain with a single "final" verb. While the average chain is 3.4 clauses long, single narrative chains can span up to 22 clauses.
+                  Nungon relies heavily on a grammatical structure known as clause chaining. Instead of breaking thoughts into short sentences, speakers string many "medial" clauses together, terminating the entire chain with a single "final" verb. While the average chain is 3.4 clauses long, single narrative chains can span up to 22 clauses. Even casual everyday text messages in Nungon routinely string 4 or more clauses together.
+                </p>
+                <h5 className="font-bold text-[#1a2d1f] text-base mt-6 mb-2">Grammar & Sound System</h5>
+                <p>
+                  Nungon uses a strict verb-final format with complex suffixes (indicating tense). It features a tripartite number system (singular, dual, plural) and a rare asymmetrical vowel inventory.
                 </p>
               </div>
               
               <div>
                 <h5 className="font-bold text-[#1a2d1f] text-base mb-2">Switch-Reference & Planning</h5>
                 <p className="mb-4">
-                  The verbs in every non-final clause are obligatorily tagged with a suffix explicitly flagging whether the subject of the upcoming clause will be the same or different. Because Nungon requires a speaker to flag a subject change before it happens, the brain must mentally map out at least two full clauses simultaneously.
+                  The verbs in every non-final clause are obligatorily tagged with a suffix explicitly flagging whether the subject of the upcoming clause will be the same or different. Because Nungon requires a speaker to flag a subject change before it happens, the brain must mentally map out at least two full clauses simultaneously. This "anti-incremental planning" has made Nungon a core focus of global psycholinguistic eye-tracking experiments.
                 </p>
                 <h5 className="font-bold text-[#1a2d1f] text-base mb-2">Cultural Registers & Taboos</h5>
                 <p className="mb-4">
-                  Through immersion, Dr. Sarvasy discovered unique socio-linguistic registers. When hunting deep in high-altitude forests, speakers switch to an entirely different vocabulary (Forest Avoidance Registers) to avoid upsetting environmental or ancestral spirits. Youth also utilize specific phonological alterations to create "secret codes."
+                  Through immersion, Dr. Sarvasy discovered unique socio-linguistic registers. When hunting deep in high-altitude forests, speakers switch to an entirely different vocabulary (Forest Avoidance Registers) to avoid upsetting environmental or ancestral spirits. Youth also utilize specific phonological alterations to create impromptu "secret codes" to gossip safely.
                 </p>
                 <h5 className="font-bold text-[#1a2d1f] text-base mb-2">Child Language Acquisition</h5>
                 <p>
