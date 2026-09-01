@@ -119,6 +119,7 @@ input::placeholder, textarea::placeholder { color: #a6929a; } textarea { resize:
 .summary-report tbody tr:nth-child(even) { background: #fafafa; }
 .summary-report tbody td:first-child, .summary-report tbody td:nth-child(5), .summary-report tbody td:nth-child(6), .summary-report tbody td:nth-child(8), .summary-report tbody td:nth-child(9) { white-space: nowrap; }
 .summary-report tfoot { background: #fff2f5; color: #c81d45; font-weight: 800; }
+.summary-source-note { margin: 0; padding: 10px 14px; color: #5e4a50; background: #fafafa; font-size: 10px; }
 .dashboard-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 23px; }
 .dashboard-actions > div { background: white; border: 1px solid #e4d7d7; border-radius: 7px; padding: 26px; }
 .dashboard-actions h2 { color: #4e1230; font: 700 18px 'Libre Baskerville', serif; margin: 0; }

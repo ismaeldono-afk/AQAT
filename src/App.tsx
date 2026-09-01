@@ -128,6 +128,7 @@ const AGRICULTURE_SUMMARY_REPORT: SummaryReportEntry[] = [
   { number: 14, staff: 'Dr. Dotaona', subjectTitle: 'Agric Entomology', subjectCode: 'AG214', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
 ];
 const APPLIED_SCIENCE_SUMMARY_REPORT: (SummaryReportEntry & { department: string })[] = [
+  // The supplied source begins at No. 2 and does not provide records for No. 1 or No. 11.
   { number: 2, staff: 'A/P Srikanth Bathula', subjectTitle: 'Advance Analytical Chemistry; Research Project', subjectCode: 'CH314; CH411', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '23/04/2026', department: 'Chemistry' },
   { number: 3, staff: 'A/Prof Janarthanan Gopalakrishnan', subjectTitle: 'Petroleum Chemistry; Research Project', subjectCode: 'CH413; CH411', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '23/04/2026', department: 'Chemistry' },
   { number: 4, staff: 'Dr. David Timi', subjectTitle: 'Chemistry for Natural Resources; Research Project', subjectCode: 'AS113; CH411', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Fully submitted', rate: 4, submissionDate: '23/04/2026', department: 'Chemistry' },
@@ -1358,7 +1359,7 @@ function AdminDashboard({
               </thead>
               <tbody>
                 {APPLIED_SCIENCE_SUMMARY_REPORT.map((entry) => (
-                  <tr key={entry.number}>
+                  <tr key={`${entry.department}-${entry.number}`}>
                     <td>{entry.number}</td><td>{entry.department}</td><td>{entry.staff}</td><td>{entry.subjectTitle}</td><td>{entry.subjectCode}</td><td>{entry.level}</td><td>{entry.subjectFileRequired}</td><td>{entry.assessmentComment}</td><td>{entry.rate ? 'Stacked neatly on CD/GD' : '—'}</td><td>{entry.rate}</td><td>{entry.submissionDate}</td>
                   </tr>
                 ))}
@@ -1368,6 +1369,7 @@ function AdminDashboard({
               </tfoot>
             </table>
           </div>
+          <p className="summary-source-note">The supplied report does not include records for No. 1 or No. 11. It records a rate of 0 for No. 12 and No. 13.</p>
         </section>
         <section className="dashboard-actions">
           <div>
