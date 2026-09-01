@@ -62,12 +62,23 @@ interface PlatformSettings {
   resultPrefix: string;
 }
 
+interface SummaryReportEntry {
+  number: number;
+  staff: string;
+  subjectTitle: string;
+  subjectCode: string;
+  level: string;
+  subjectFileRequired: string;
+  assessmentComment: string;
+  rate: number;
+  submissionDate: string;
+}
+
 interface ChecklistEntry {
   id: string;
   section: number;
   title: string;
   guidance: string;
-  annualReview?: boolean;
   rating: Rating;
   comment: string;
   evidence: Evidence[];
@@ -99,80 +110,134 @@ const PLATFORM_SETTINGS_KEY = 'aqat-platform-settings-v1';
 const MAX_SCORE = 24;
 const DEFAULT_PLATFORM_NAME = 'Academic Quality, Assurance of Teaching';
 const assetUrl = (filename: string) => `${import.meta.env.BASE_URL}assets/${filename}`;
+const AGRICULTURE_SUMMARY_COMMENT = 'Fully submitted neatly stacked on GD/CD';
+const AGRICULTURE_SUMMARY_REPORT: SummaryReportEntry[] = [
+  { number: 1, staff: 'Prof. R Rao', subjectTitle: 'Soil Fertility Management', subjectCode: 'AG 213', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+  { number: 2, staff: 'Dr. Jaya Prakash', subjectTitle: 'Physiology and Anatomy of Animals', subjectCode: 'AG114', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+  { number: 3, staff: 'Dr. Jaya Prakash', subjectTitle: 'Animal Health and Diseases', subjectCode: 'AG313', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+  { number: 4, staff: 'Dr. S. Poloma', subjectTitle: 'Agronomy I', subjectCode: 'AG211', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+  { number: 5, staff: 'Prof. Danbaro', subjectTitle: 'Animal Breeding', subjectCode: 'AG412', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+  { number: 6, staff: 'Dr. Bue, Ms. Parau', subjectTitle: 'Agricultural Extension', subjectCode: 'AG414', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+  { number: 7, staff: 'Mrs. Maino & Ms. Parau', subjectTitle: 'Professional Practice & Communication', subjectCode: 'AG113', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+  { number: 8, staff: 'Professor Tom Okpul, Dr. Victor Eze', subjectTitle: 'Research Methods 1', subjectCode: 'AG312', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+  { number: 9, staff: 'Dr. Ban', subjectTitle: 'Crop Diseases', subjectCode: 'AG314', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+  { number: 10, staff: 'Dr. Ban, Prof. Rao', subjectTitle: 'Biochemistry', subjectCode: 'AG111', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+  { number: 11, staff: 'Dr. Michael', subjectTitle: 'Environment and Sustainability', subjectCode: 'AG411', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+  { number: 12, staff: 'Dr. Pandi, Mr. Nano', subjectTitle: 'Animal Management', subjectCode: 'AG311', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+  { number: 13, staff: 'Dr. Eze, Mr. Kiwa', subjectTitle: 'Introduction to Agric. Economics', subjectCode: 'AG112', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+  { number: 14, staff: 'Dr. Dotaona', subjectTitle: 'Agric Entomology', subjectCode: 'AG214', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+];
+const APPLIED_SCIENCE_SUMMARY_REPORT: (SummaryReportEntry & { department: string })[] = [
+  // The supplied source begins at No. 2 and does not provide records for No. 1 or No. 11.
+  { number: 2, staff: 'A/P Srikanth Bathula', subjectTitle: 'Advance Analytical Chemistry; Research Project', subjectCode: 'CH314; CH411', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '23/04/2026', department: 'Chemistry' },
+  { number: 3, staff: 'A/Prof Janarthanan Gopalakrishnan', subjectTitle: 'Petroleum Chemistry; Research Project', subjectCode: 'CH413; CH411', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '23/04/2026', department: 'Chemistry' },
+  { number: 4, staff: 'Dr. David Timi', subjectTitle: 'Chemistry for Natural Resources; Research Project', subjectCode: 'AS113; CH411', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Fully submitted', rate: 4, submissionDate: '23/04/2026', department: 'Chemistry' },
+  { number: 5, staff: 'Mr. Justin Narimbi', subjectTitle: 'Research Project; Industrial Training', subjectCode: 'CH411; CH400', level: 'UG', subjectFileRequired: '—', assessmentComment: '—', rate: 4, submissionDate: '23/04/2026', department: 'Chemistry' },
+  { number: 6, staff: 'Mr. Jason Wau', subjectTitle: 'Instrumental Analysis; Applied Organic Chemistry; Research Project', subjectCode: 'CH313; CH213; CH411', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '23/04/2026', department: 'Chemistry' },
+  { number: 7, staff: 'Mr. Kaupa Philip', subjectTitle: 'Research Project', subjectCode: 'CH411', level: 'UG', subjectFileRequired: '—', assessmentComment: '—', rate: 4, submissionDate: '23/04/2026', department: 'Chemistry' },
+  { number: 8, staff: 'Ms. Salvina Ku', subjectTitle: 'Foundation Chemistry; Foundation Chemistry; Applied Physical Chemistry', subjectCode: 'CH111; AS111; CH211', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '23/04/2026', department: 'Chemistry' },
+  { number: 9, staff: 'Ms. Milka Vincent', subjectTitle: 'Geometry / Mineral Tech', subjectCode: 'CH312', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '23/04/2026', department: 'Chemistry' },
+  { number: 10, staff: 'Ms. Stephanie Anis', subjectTitle: 'Industrial Organic Chemistry', subjectCode: 'CH412', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '23/04/2026', department: 'Chemistry' },
+  { number: 12, staff: 'Mr. Reilly Nigo', subjectTitle: 'Food Engineering II; Innovation and Entrepreneurship', subjectCode: 'FT311; FT414', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Not submitted', rate: 0, submissionDate: '—', department: 'Food Technology' },
+  { number: 13, staff: 'Dr. Lydia Yalambing', subjectTitle: 'Nutrition I; Advance Nutrition', subjectCode: 'FT214; FT412', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 0, submissionDate: '—', department: 'Food Technology' },
+  { number: 14, staff: 'Dr. Getachew Tolesa', subjectTitle: 'Food Engineering I; Food Chemistry; Food Processing Practical III', subjectCode: 'FT211; FT212; FT413', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '23/04/2026', department: 'Food Technology' },
+  { number: 15, staff: 'Dr. Selvakumar Palaniappan', subjectTitle: 'Food Microbiology; Food Microbiology and Biotechnology', subjectCode: 'FT213; FT313', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '23/04/2026', department: 'Food Technology' },
+  { number: 16, staff: 'Mrs. Sogoing Denana', subjectTitle: 'Quality Assurance', subjectCode: 'FT312', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '23/04/2026', department: 'Food Technology' },
+  { number: 17, staff: 'Mr. Nigel Kiaka', subjectTitle: 'Food Engineering I', subjectCode: 'FT211', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '23/04/2026', department: 'Food Technology' },
+  { number: 18, staff: 'Mrs. Rag Gubag Sipou', subjectTitle: 'Food Microbiology; Food Microbiology and Biotechnology', subjectCode: 'FT213; FT313', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '23/04/2026', department: 'Food Technology' },
+  { number: 19, staff: 'Ms. Dilkay Bau', subjectTitle: 'Food Chemistry; Quality Assurance', subjectCode: 'FT212; FT312', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '23/04/2026', department: 'Food Technology' },
+];
+const ARCHITECTURE_SUMMARY_COMMENT = 'Stacked neatly in GD/CD';
+const ARCHITECTURE_SUMMARY_REPORT: SummaryReportEntry[] = [
+  { number: 1, staff: 'Dr Jerry Walliah (HoS)', subjectTitle: 'Introduction to Research in Architecture & Construction Management', subjectCode: 'AR 119', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '8/07/2026' },
+  { number: 2, staff: 'Professor Cletus Gonduan (Dean)', subjectTitle: 'Melanesian Built Environment', subjectCode: 'AR312', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '16/07/2026' },
+  { number: 3, staff: 'Dr Andrew Sariman', subjectTitle: 'Building Science', subjectCode: 'AR117', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '8/07/2026' },
+  { number: 4, staff: 'Dr Raheleh Rostami', subjectTitle: 'History of Architecture', subjectCode: 'AR212', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '8/07/2026' },
+  { number: 4, staff: 'Dr Raheleh Rostami', subjectTitle: 'Ecological Sustainable Development', subjectCode: 'AR317', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '8/07/2026' },
+  { number: 5, staff: 'Dr Winter Petilani', subjectTitle: 'Integrated Architectural Design V', subjectCode: 'AR310', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '8/07/2026' },
+  { number: 6, staff: 'Mathew Pomoso', subjectTitle: 'Quantities and Estimating III', subjectCode: 'CM310', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '8/07/2026' },
+  { number: 7, staff: 'Clive Paigala', subjectTitle: 'Structures', subjectCode: 'AR214', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '8/07/2026' },
+  { number: 8, staff: 'Magdelyne Kuluwah', subjectTitle: 'Introduction to Construction Management', subjectCode: 'CM110', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '8/07/2026' },
+  { number: 8, staff: 'Magdelyne Kuluwah', subjectTitle: 'Construction Management III', subjectCode: 'CM212', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '8/07/2026' },
+  { number: 9, staff: 'Stephanie Kisokau', subjectTitle: 'Building Systems I', subjectCode: 'AR213', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '8/07/2026' },
+  { number: 10, staff: 'Lincoln Sauwa', subjectTitle: 'IN', subjectCode: 'CM410', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '8/07/2026' },
+  { number: 11, staff: 'Donovan Akui', subjectTitle: 'Quantities and Estimating I', subjectCode: 'CM210', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '8/07/2026' },
+  { number: 12, staff: 'Dr Meysam Khoshnava', subjectTitle: 'CM419 (UG, non-examinable); CM513, CM518 & CM619 (PG)', subjectCode: 'CM419; CM513; CM518; CM619', level: 'UG / PG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '27/07/2026' },
+  { number: 13, staff: 'Vincent Kifas', subjectTitle: 'Construction Theory IV', subjectCode: 'CM311', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: 'Complete', rate: 4, submissionDate: '15/07/2026' },
+];
 
 const CHECKLIST_TEMPLATE: Omit<ChecklistEntry, 'rating' | 'comment' | 'evidence'>[] = [
   {
-    id: 'subject-outline',
+    id: 'lecture-plan',
     section: 1,
-    title: 'Subject outline and approved course description',
-    guidance: 'Current outline, learning outcomes, weekly schedule and assessment weighting.',
+    title: 'Lecture plan',
+    guidance: 'Current lecture plan for the subject.',
   },
   {
-    id: 'teaching-plan',
+    id: 'lecture-notes',
     section: 2,
-    title: 'Teaching plan and delivery materials',
-    guidance: 'Lesson plan, lecture notes, slides, readings and learning resources.',
+    title: 'Lecture notes',
+    guidance: 'Lecture notes and associated delivery materials.',
   },
   {
-    id: 'tutorial-lab',
+    id: 'tutorials',
     section: 3,
-    title: 'Tutorial, practical or laboratory materials',
-    guidance: 'Worksheets, activity instructions, solutions and laboratory guides where applicable.',
+    title: 'Tutorials (if compulsory only)',
+    guidance: 'Tutorial materials, instructions and solutions where tutorials are compulsory.',
   },
   {
-    id: 'assessment-design',
+    id: 'assignments',
     section: 4,
-    title: 'Assessment tasks and marking criteria',
-    guidance: 'Assignment questions, rubrics, marking guides and model answers.',
+    title: 'Assignments with solutions and 3 marked copies',
+    guidance: 'Assignment questions, solutions and three marked student copies.',
   },
   {
-    id: 'assessment-feedback',
+    id: 'laboratory-assignments',
     section: 5,
-    title: 'Marked student work and feedback samples',
-    guidance: 'De-identified high, middle and low samples showing feedback and marking consistency.',
+    title: 'Laboratory assignments with 3 marked copies',
+    guidance: 'Laboratory assignments and three marked student copies.',
   },
   {
-    id: 'moderation',
+    id: 'quizzes',
     section: 6,
-    title: 'Internal or external moderation records',
-    guidance: 'Moderation advice, responses and signed moderation records.',
+    title: 'Quizzes with solutions and 3 marked copies',
+    guidance: 'Quiz questions, solutions and three marked student copies.',
   },
   {
-    id: 'attendance',
+    id: 'tests',
     section: 7,
-    title: 'Class attendance and engagement record',
-    guidance: 'Attendance register, participation evidence and follow-up where attendance is low.',
+    title: 'Tests with solutions and 3 marked copies',
+    guidance: 'Test questions, solutions and three marked student copies.',
   },
   {
-    id: 'student-feedback',
+    id: 'field-visit',
     section: 8,
-    title: 'Student evaluation and improvement response',
-    guidance: 'SET summary or equivalent student feedback with an action response.',
+    title: 'Field visit / industrial training report',
+    guidance: 'Field visit or industrial training report where applicable.',
   },
   {
-    id: 'final-exam',
+    id: 'student-evaluation',
     section: 9,
-    title: 'Final examination and marking materials',
-    guidance: 'Current paper, previous paper where required, marking guide and examination approval evidence.',
+    title: 'Student evaluation summary of teachers',
+    guidance: 'Summary of student evaluations for the teacher.',
   },
   {
-    id: 'results',
+    id: 'final-exam-paper',
     section: 10,
-    title: 'Results, grade approval and records',
-    guidance: 'Verified marks, grade sheet and relevant results approval evidence.',
+    title: 'Final exam question paper and solutions',
+    guidance: 'Final examination question paper and solutions.',
   },
   {
-    id: 'subject-review',
+    id: 'exam-moderation',
     section: 11,
-    title: 'Subject reflection and improvement plan',
-    guidance: 'Lecturer reflection identifying outcomes, issues and actions for the next offering.',
+    title: 'Copy of final exam moderation sheet',
+    guidance: 'Completed final examination moderation sheet.',
   },
   {
-    id: 'annual-review',
+    id: 'marked-exam-scripts',
     section: 12,
-    title: 'Annual subject review evidence',
-    guidance: 'A consolidated annual review pack covering the three required records below.',
-    annualReview: true,
+    title: 'Copies of marked exam scripts',
+    guidance: 'Copies of marked final examination scripts.',
   },
 ];
 
@@ -739,7 +804,7 @@ export default function App() {
           <section className="panel checklist-panel" aria-labelledby="checklist-title">
             <div className="panel-heading checklist-heading">
               <div>
-                <p className="eyebrow accent">14 documentation sections · 12 scored checks</p>
+                <p className="eyebrow accent">12 scored checks · 2 supporting records</p>
                 <h2 id="checklist-title">Checklist, evidence and reviewer assessment</h2>
                 <p>Complete, Incomplete and Nil are mutually exclusive ratings. The 12 scored checks total a maximum of 24 points.</p>
               </div>
@@ -759,16 +824,6 @@ export default function App() {
                   <div className="check-main">
                     <h3>{entry.title}</h3>
                     <p>{entry.guidance}</p>
-                    {entry.annualReview && (
-                      <div className="annual-review">
-                        <span>Annual review must include:</span>
-                        <ul>
-                          <li>Continuous assessment break-up</li>
-                          <li>Consolidation attendance percentage</li>
-                          <li>CA and final examination marks with grade</li>
-                        </ul>
-                      </div>
-                    )}
                     <div className="evidence-list" aria-label={`Evidence for ${entry.title}`}>
                       {entry.evidence.map((file, index) => (
                         <span className="file-chip" key={`${file.name}-${index}`}>
@@ -801,13 +856,13 @@ export default function App() {
               ))}
               <article className="supporting-row">
                 <span className="check-number">13</span>
-                <div><h3>HoS confirmation record</h3><p>Head of School name, presence and signature confirmation are recorded in the workflow section below.</p></div>
-                <span className="not-scored">Workflow record</span>
+                <div><h3>Examiners’ report</h3><p>Retain the completed examiner’s report with the subject file.</p></div>
+                <span className="not-scored">Supporting record</span>
               </article>
               <article className="supporting-row">
                 <span className="check-number">14</span>
-                <div><h3>AQAT Chairperson approval</h3><p>Final approval and signature are retained with the completed assessment sheet.</p></div>
-                <span className="not-scored">Workflow record</span>
+                <div><h3>Annual review of the subject</h3><p>Include the continuous assessment break-up, consolidation attendance percentage, and CA plus final exam marks and grade.</p></div>
+                <span className="not-scored">Supporting record</span>
               </article>
             </div>
           </section>
@@ -819,7 +874,7 @@ export default function App() {
             <h2>{reviewerMode ? 'AQAT reviewer desk' : hosMode ? 'Head of School desk' : 'Lecturer desk'}</h2>
             {lecturerMode && (
               <>
-                <p className="muted">Attach evidence to every scored check, then submit the sheet to the Head of School.</p>
+                <p className="muted">Attach evidence for each checklist item, then submit the sheet to the Head of School.</p>
                 {!isSubmissionWindowOpen(submissionSettings) && <p className="submission-window-notice">{submissionWindowMessage(submissionSettings)}</p>}
                 <button className="button primary" onClick={submitToHos} disabled={verification.status !== 'draft' || !isSubmissionWindowOpen(submissionSettings)}>Submit to Head of School</button>
                 <div className="completion-meter">
@@ -830,7 +885,7 @@ export default function App() {
             )}
             {hosMode && (
               <>
-                <p className="muted">Confirm that the lecturer has presented a complete subject file, then record your name, presence and signature before forwarding the record to AQAT.</p>
+                <p className="muted">Confirm that the lecturer has presented the subject file, then record your name, presence and signature before forwarding the record to AQAT.</p>
                 <Field label="Head of School name">
                   <input value={verification.hosName} onChange={(event) => updateDetails('hosName', event.target.value)} placeholder={session.name} disabled={verification.status !== 'submitted'} />
                 </Field>
@@ -1277,6 +1332,91 @@ function AdminDashboard({
           <article><span>Reviewer ratings</span><strong>{ratingCount} <small>/ 12</small></strong></article>
           <article><span>Current result</span><strong>{scaledScore.toFixed(2)} <small>/ 4</small></strong><em>{score} / {MAX_SCORE} points</em></article>
         </div>
+        <section className="summary-report panel" aria-labelledby="agriculture-summary-title">
+          <div className="panel-heading">
+            <div>
+              <p className="eyebrow accent">AQAT summary report data</p>
+              <h2 id="agriculture-summary-title">School of Agriculture · 2026 Semester One (1)</h2>
+            </div>
+            <span className="autosave">{AGRICULTURE_SUMMARY_REPORT.length} subject files</span>
+          </div>
+          <div className="summary-report-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>No.</th><th>Lecturer / staff</th><th>Subject title</th><th>Subject code</th><th>PG/UG</th><th>Subject file required</th><th>Assessment comments</th><th>Rate</th><th>Submission date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {AGRICULTURE_SUMMARY_REPORT.map((entry) => (
+                  <tr key={entry.number}>
+                    <td>{entry.number}</td><td>{entry.staff}</td><td>{entry.subjectTitle}</td><td>{entry.subjectCode}</td><td>{entry.level}</td><td>{entry.subjectFileRequired}</td><td>{entry.assessmentComment}</td><td>{entry.rate}</td><td>{entry.submissionDate}</td>
+                  </tr>
+                ))}
+              </tbody>
+              <tfoot>
+                <tr><th colSpan={9}>Source-reported summary: Sum 60 · Average 4.00</th></tr>
+              </tfoot>
+            </table>
+          </div>
+        </section>
+        <section className="summary-report panel" aria-labelledby="applied-science-summary-title">
+          <div className="panel-heading">
+            <div>
+              <p className="eyebrow accent">AQAT summary report data</p>
+              <h2 id="applied-science-summary-title">School of Applied Science · 2026 Semester One (1)</h2>
+            </div>
+            <span className="autosave">{APPLIED_SCIENCE_SUMMARY_REPORT.length} staff records</span>
+          </div>
+          <div className="summary-report-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>No.</th><th>Department</th><th>Lecturer / staff</th><th>Subject title</th><th>Subject code</th><th>PG/UG</th><th>Subject file required</th><th>Assessment</th><th>Comments</th><th>Rate</th><th>Submission date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {APPLIED_SCIENCE_SUMMARY_REPORT.map((entry) => (
+                  <tr key={`${entry.department}-${entry.number}`}>
+                    <td>{entry.number}</td><td>{entry.department}</td><td>{entry.staff}</td><td>{entry.subjectTitle}</td><td>{entry.subjectCode}</td><td>{entry.level}</td><td>{entry.subjectFileRequired}</td><td>{entry.assessmentComment}</td><td>{entry.rate ? 'Stacked neatly on CD/GD' : '—'}</td><td>{entry.rate}</td><td>{entry.submissionDate}</td>
+                  </tr>
+                ))}
+              </tbody>
+              <tfoot>
+                <tr><th colSpan={11}>Source-reported summary: Sum 92 · Average 3.50</th></tr>
+              </tfoot>
+            </table>
+          </div>
+          <p className="summary-source-note">The supplied report does not include records for No. 1 or No. 11. It records a rate of 0 for No. 12 and No. 13.</p>
+        </section>
+        <section className="summary-report panel" aria-labelledby="architecture-summary-title">
+          <div className="panel-heading">
+            <div>
+              <p className="eyebrow accent">AQAT summary report data</p>
+              <h2 id="architecture-summary-title">School of Architecture & Construction Management · 2026 Semester One (1)</h2>
+            </div>
+            <span className="autosave">{ARCHITECTURE_SUMMARY_REPORT.length} course records</span>
+          </div>
+          <div className="summary-report-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>No.</th><th>Lecturer / staff</th><th>Subject title</th><th>Course code</th><th>PG/UG</th><th>Subject file required</th><th>Assessment</th><th>Comments</th><th>Rate</th><th>Submission date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ARCHITECTURE_SUMMARY_REPORT.map((entry, index) => (
+                  <tr key={`${entry.number}-${entry.subjectCode}-${index}`}>
+                    <td>{entry.number}</td><td>{entry.staff}</td><td>{entry.subjectTitle}</td><td>{entry.subjectCode}</td><td>{entry.level}</td><td>{entry.subjectFileRequired}</td><td>{entry.assessmentComment}</td><td>{ARCHITECTURE_SUMMARY_COMMENT}</td><td>{entry.rate}</td><td>{entry.submissionDate}</td>
+                  </tr>
+                ))}
+              </tbody>
+              <tfoot>
+                <tr><th colSpan={10}>Source-reported summary: Sum 60 · Average 4.00</th></tr>
+              </tfoot>
+            </table>
+          </div>
+        </section>
         <section className="dashboard-actions">
           <div>
             <h2>Workflow control</h2>
