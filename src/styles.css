@@ -111,6 +111,14 @@ input::placeholder, textarea::placeholder { color: #a6929a; } textarea { resize:
 .dashboard-cards strong { color: #74183c; font: 700 20px 'Libre Baskerville', serif; line-height: 1.35; }
 .dashboard-cards strong small { color: #7a626d; font: 500 12px 'DM Mono', monospace; }
 .dashboard-cards em { color: #896f79; font-size: 10px; font-style: normal; }
+.summary-report { margin-top: 23px; overflow: hidden; }
+.summary-report-table-wrap { overflow-x: auto; }
+.summary-report table { width: 100%; min-width: 1120px; border-collapse: collapse; font-size: 11px; }
+.summary-report th, .summary-report td { border-bottom: 1px solid #ece5e7; padding: 12px 14px; text-align: left; vertical-align: top; }
+.summary-report thead { background: #171717; color: #fff; }
+.summary-report tbody tr:nth-child(even) { background: #fafafa; }
+.summary-report tbody td:first-child, .summary-report tbody td:nth-child(5), .summary-report tbody td:nth-child(6), .summary-report tbody td:nth-child(8), .summary-report tbody td:nth-child(9) { white-space: nowrap; }
+.summary-report tfoot { background: #fff2f5; color: #c81d45; font-weight: 800; }
 .dashboard-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 23px; }
 .dashboard-actions > div { background: white; border: 1px solid #e4d7d7; border-radius: 7px; padding: 26px; }
 .dashboard-actions h2 { color: #4e1230; font: 700 18px 'Libre Baskerville', serif; margin: 0; }

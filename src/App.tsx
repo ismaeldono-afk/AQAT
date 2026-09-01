@@ -62,6 +62,18 @@ interface PlatformSettings {
   resultPrefix: string;
 }
 
+interface SummaryReportEntry {
+  number: number;
+  staff: string;
+  subjectTitle: string;
+  subjectCode: string;
+  level: 'UG' | 'PG';
+  subjectFileRequired: 'Yes' | 'No';
+  assessmentComment: string;
+  rate: number;
+  submissionDate: string;
+}
+
 interface ChecklistEntry {
   id: string;
   section: number;
@@ -98,6 +110,33 @@ const PLATFORM_SETTINGS_KEY = 'aqat-platform-settings-v1';
 const MAX_SCORE = 24;
 const DEFAULT_PLATFORM_NAME = 'Academic Quality, Assurance of Teaching';
 const assetUrl = (filename: string) => `${import.meta.env.BASE_URL}assets/${filename}`;
+const AGRICULTURE_SUMMARY_COMMENT = 'Fully submitted neatly stacked on GD/CD';
+const AGRICULTURE_SUMMARY_REPORT: SummaryReportEntry[] = [
+  [1, 'Prof. R Rao', 'Soil Fertility Management', 'AG 213'],
+  [2, 'Dr. Jaya Prakash', 'Physiology and Anatomy of Animals', 'AG114'],
+  [3, 'Dr. Jaya Prakash', 'Animal Health and Diseases', 'AG313'],
+  [4, 'Dr. S. Poloma', 'Agronomy I', 'AG211'],
+  [5, 'Prof. Danbaro', 'Animal Breeding', 'AG412'],
+  [6, 'Dr. Bue, Ms. Parau', 'Agricultural Extension', 'AG414'],
+  [7, 'Mrs. Maino & Ms. Parau', 'Professional Practice & Communication', 'AG113'],
+  [8, 'Professor Tom Okpul, Dr. Victor Eze', 'Research Methods 1', 'AG312'],
+  [9, 'Dr. Ban', 'Crop Diseases', 'AG314'],
+  [10, 'Dr. Ban, Prof. Rao', 'Biochemistry', 'AG111'],
+  [11, 'Dr. Michael', 'Environment and Sustainability', 'AG411'],
+  [12, 'Dr. Pandi, Mr. Nano', 'Animal Management', 'AG311'],
+  [13, 'Dr. Eze, Mr. Kiwa', 'Introduction to Agric. Economics', 'AG112'],
+  [14, 'Dr. Dotaona', 'Agric Entomology', 'AG214'],
+].map(([number, staff, subjectTitle, subjectCode]) => ({
+  number,
+  staff,
+  subjectTitle,
+  subjectCode,
+  level: 'UG',
+  subjectFileRequired: 'Yes',
+  assessmentComment: AGRICULTURE_SUMMARY_COMMENT,
+  rate: 4,
+  submissionDate: '17/07/2026',
+}));
 
 const CHECKLIST_TEMPLATE: Omit<ChecklistEntry, 'rating' | 'comment' | 'evidence'>[] = [
   {
@@ -1265,6 +1304,34 @@ function AdminDashboard({
           <article><span>Reviewer ratings</span><strong>{ratingCount} <small>/ 12</small></strong></article>
           <article><span>Current result</span><strong>{scaledScore.toFixed(2)} <small>/ 4</small></strong><em>{score} / {MAX_SCORE} points</em></article>
         </div>
+        <section className="summary-report panel" aria-labelledby="agriculture-summary-title">
+          <div className="panel-heading">
+            <div>
+              <p className="eyebrow accent">AQAT summary report data</p>
+              <h2 id="agriculture-summary-title">School of Agriculture · 2026 Semester One (1)</h2>
+            </div>
+            <span className="autosave">{AGRICULTURE_SUMMARY_REPORT.length} subject files</span>
+          </div>
+          <div className="summary-report-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>No.</th><th>Lecturer / staff</th><th>Subject title</th><th>Subject code</th><th>PG/UG</th><th>Subject file required</th><th>Assessment comments</th><th>Rate</th><th>Submission date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {AGRICULTURE_SUMMARY_REPORT.map((entry) => (
+                  <tr key={entry.number}>
+                    <td>{entry.number}</td><td>{entry.staff}</td><td>{entry.subjectTitle}</td><td>{entry.subjectCode}</td><td>{entry.level}</td><td>{entry.subjectFileRequired}</td><td>{entry.assessmentComment}</td><td>{entry.rate}</td><td>{entry.submissionDate}</td>
+                  </tr>
+                ))}
+              </tbody>
+              <tfoot>
+                <tr><th colSpan={7}>Reported summary</th><td>Sum 60</td><td>Average 4.00</td></tr>
+              </tfoot>
+            </table>
+          </div>
+        </section>
         <section className="dashboard-actions">
           <div>
             <h2>Workflow control</h2>
