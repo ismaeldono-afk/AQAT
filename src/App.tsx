@@ -1,7 +1,126 @@
-﻿import React from 'react';
-import { Eye, MapPin, Target, Users, Leaf, Tent, Building, Download, ArrowDown, ArrowUp, CheckSquare } from 'lucide-react';
+import React, { useState } from 'react';
+import { Eye, MapPin, Target, Users, Leaf, Tent, Building, Download, ArrowDown, ArrowUp, CheckSquare, LayoutDashboard, FileText, Settings as SettingsIcon, LogOut, Activity, Database } from 'lucide-react';
 
 export default function App() {
+  const [view, setView] = useState<'public' | 'admin'>('public');
+
+  if (view === 'admin') {
+    return (
+      <div className="min-h-screen bg-gray-100 flex font-sans">
+        {/* Sidebar */}
+        <div className="w-64 bg-[#1a2d1f] text-white flex flex-col shrink-0">
+          <div className="p-6 border-b border-[#2a4d34]">
+            <h2 className="text-xl font-bold">System Admin</h2>
+            <p className="text-xs text-[#e6c770] mt-1">Meptain Agriculture</p>
+          </div>
+          <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
+            <button className="w-full flex items-center gap-3 px-4 py-3 bg-[#2a4d34] rounded-lg text-left font-medium"><LayoutDashboard size={18}/> Dashboard</button>
+            <button className="w-full flex items-center gap-3 px-4 py-3 hover:bg-[#2a4d34] rounded-lg text-left text-gray-300 hover:text-white transition-colors"><Users size={18}/> Members</button>
+            <button className="w-full flex items-center gap-3 px-4 py-3 hover:bg-[#2a4d34] rounded-lg text-left text-gray-300 hover:text-white transition-colors"><FileText size={18}/> Form Submissions</button>
+            <button className="w-full flex items-center gap-3 px-4 py-3 hover:bg-[#2a4d34] rounded-lg text-left text-gray-300 hover:text-white transition-colors"><Database size={18}/> Content</button>
+            <button className="w-full flex items-center gap-3 px-4 py-3 hover:bg-[#2a4d34] rounded-lg text-left text-gray-300 hover:text-white transition-colors"><SettingsIcon size={18}/> Settings</button>
+          </nav>
+          <div className="p-4 border-t border-[#2a4d34]">
+            <button onClick={() => setView('public')} className="w-full flex items-center gap-3 px-4 py-3 hover:bg-[#2a4d34] rounded-lg text-left text-[#e6c770] transition-colors">
+              <LogOut size={18}/> Return to Site
+            </button>
+          </div>
+        </div>
+        
+        {/* Main Content */}
+        <div className="flex-1 flex flex-col min-w-0">
+          <header className="bg-white shadow-sm px-8 py-4 flex justify-between items-center sticky top-0 z-10">
+            <h1 className="text-2xl font-bold text-gray-800">Dashboard Overview</h1>
+            <div className="flex items-center gap-4">
+              <span className="text-sm font-medium text-gray-600">Admin User</span>
+              <div className="w-10 h-10 bg-[#2a4d34] rounded-full flex items-center justify-center text-white font-bold shadow-sm">A</div>
+            </div>
+          </header>
+          
+          <main className="p-8 flex-1 overflow-y-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1 font-medium">Total Cooperative Members</p>
+                    <h3 className="text-3xl font-bold text-gray-800">1,248</h3>
+                  </div>
+                  <div className="p-3 bg-green-50 text-green-600 rounded-lg"><Users size={24}/></div>
+                </div>
+                <p className="text-sm text-green-600 mt-4 flex items-center gap-1 font-medium"><ArrowUp size={14}/> +12% this month</p>
+              </div>
+              
+              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1 font-medium">Pending Form Approvals</p>
+                    <h3 className="text-3xl font-bold text-gray-800">42</h3>
+                  </div>
+                  <div className="p-3 bg-orange-50 text-orange-600 rounded-lg"><FileText size={24}/></div>
+                </div>
+                <p className="text-sm text-orange-600 mt-4 font-medium">Needs attention</p>
+              </div>
+              
+              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1 font-medium">Active Programmes</p>
+                    <h3 className="text-3xl font-bold text-gray-800">4</h3>
+                  </div>
+                  <div className="p-3 bg-blue-50 text-blue-600 rounded-lg"><Activity size={24}/></div>
+                </div>
+                <p className="text-sm text-blue-600 mt-4 flex items-center gap-1 font-medium"><CheckSquare size={14}/> All systems nominal</p>
+              </div>
+            </div>
+            
+            <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+              <div className="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+                <h3 className="font-bold text-gray-800">Recent Form Submissions</h3>
+                <button className="text-sm text-[#2a4d34] font-medium hover:underline">View All</button>
+              </div>
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-collapse min-w-[600px]">
+                  <thead>
+                    <tr className="bg-gray-50 text-gray-500 text-sm border-b border-gray-100">
+                      <th className="px-6 py-4 font-medium">Form Type</th>
+                      <th className="px-6 py-4 font-medium">Submitted By</th>
+                      <th className="px-6 py-4 font-medium">Date</th>
+                      <th className="px-6 py-4 font-medium">Status</th>
+                      <th className="px-6 py-4 font-medium">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100">
+                    <tr className="hover:bg-gray-50/50 transition-colors">
+                      <td className="px-6 py-4 text-sm font-medium text-gray-800">Membership Registration</td>
+                      <td className="px-6 py-4 text-sm text-gray-600">John Doe (Yawan Village)</td>
+                      <td className="px-6 py-4 text-sm text-gray-600">Today, 09:24 AM</td>
+                      <td className="px-6 py-4"><span className="px-3 py-1 bg-orange-50 text-orange-600 text-xs rounded-full font-medium border border-orange-100">Pending</span></td>
+                      <td className="px-6 py-4"><button className="text-sm text-[#2a4d34] font-bold hover:underline">Review</button></td>
+                    </tr>
+                    <tr className="hover:bg-gray-50/50 transition-colors">
+                      <td className="px-6 py-4 text-sm font-medium text-gray-800">Coffee Delivery</td>
+                      <td className="px-6 py-4 text-sm text-gray-600">Sarah Smith (Ward One)</td>
+                      <td className="px-6 py-4 text-sm text-gray-600">Yesterday, 14:30 PM</td>
+                      <td className="px-6 py-4"><span className="px-3 py-1 bg-green-50 text-green-700 text-xs rounded-full font-medium border border-green-100">Approved</span></td>
+                      <td className="px-6 py-4"><button className="text-sm text-[#2a4d34] font-bold hover:underline">View</button></td>
+                    </tr>
+                    <tr className="hover:bg-gray-50/50 transition-colors">
+                      <td className="px-6 py-4 text-sm font-medium text-gray-800">Land Consent</td>
+                      <td className="px-6 py-4 text-sm text-gray-600">Village Elder Council</td>
+                      <td className="px-6 py-4 text-sm text-gray-600">Oct 12, 2026</td>
+                      <td className="px-6 py-4"><span className="px-3 py-1 bg-green-50 text-green-700 text-xs rounded-full font-medium border border-green-100">Approved</span></td>
+                      <td className="px-6 py-4"><button className="text-sm text-[#2a4d34] font-bold hover:underline">View</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#F9F8F3] font-serif text-[#333]">
       {/* Header */}
@@ -340,9 +459,13 @@ export default function App() {
         </div>
         <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center text-xs text-white/50">
           <p>2026 Meptain Agriculture - Yawan Village, Morobe Province, PNG</p>
-          <button className="mt-4 md:mt-0 hover:text-white transition-colors flex items-center gap-1" onClick={() => window.scrollTo({top:0, behavior:'smooth'})}>
-            Return to top <ArrowUp size={12} />
-          </button>
+          <div className="flex items-center gap-4 mt-4 md:mt-0">
+            <button onClick={() => setView('admin')} className="hover:text-white transition-colors underline">System Admin Login</button>
+            <span>|</span>
+            <button className="hover:text-white transition-colors flex items-center gap-1" onClick={() => window.scrollTo({top:0, behavior:'smooth'})}>
+              Return to top <ArrowUp size={12} />
+            </button>
+          </div>
         </div>
       </footer>
     </div>
