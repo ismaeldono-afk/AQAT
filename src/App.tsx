@@ -50,7 +50,7 @@ export default function App() {
           </header>
           
           <main className="p-8 flex-1 overflow-y-auto">
-            {adminSection === 'dashboard' ? (
+            {adminSection === 'dashboard' && (
               <>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                   <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
@@ -130,7 +130,9 @@ export default function App() {
                   </div>
                 </div>
               </>
-            ) : (
+            )}
+            
+            {adminSection === 'content' && (
               <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
                 <div className="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
                   <h3 className="font-bold text-gray-800">Public Site Content</h3>
@@ -379,7 +381,7 @@ export default function App() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-4 gap-6 items-stretch">
+        <div className="grid md:grid-cols-3 gap-6 items-stretch mb-6">
           
           {/* Col 1 */}
           <div className="bg-white border border-[#d3d9d3] flex flex-col h-full">
@@ -448,15 +450,43 @@ export default function App() {
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Col 4 */}
-          <div className="bg-white border border-[#d3d9d3] flex flex-col h-full">
-            <img src="https://images.unsplash.com/photo-1529156069898-49953eb1f5ff?auto=format&fit=crop&q=80" alt="Community" className="w-full h-48 object-cover" />
-            <div className="p-6 flex-grow">
-              <h4 className="font-bold text-[#1a2d1f] text-lg mb-3">Community<br/>Development</h4>
-              <p className="text-xs text-[#555] leading-[1.6]">
-                We collaborate with Western Sydney University to support education, community development, and research connected to the Nungon language and local knowledge. The project <em>A Grammar of Nungon: A Papuan language of northeast New Guinea</em> documents an important part of Papua New Guinea's linguistic and biocultural heritage. Research across Papua New Guinea shows that indigenous-language fluency and ethnobiological knowledge are declining together, making language documentation, intergenerational learning, and community-led education especially important. Our work helps celebrate Nungon language, culture, and knowledge while supporting practical opportunities for rural families.
-              </p>
+        {/* Full-width Community Development Section */}
+        <div className="mt-6 bg-white border border-[#d3d9d3] flex flex-col lg:flex-row">
+          <img src="https://images.unsplash.com/photo-1529156069898-49953eb1f5ff?auto=format&fit=crop&q=80" alt="Community" className="w-full lg:w-1/3 object-cover h-64 lg:h-auto" />
+          <div className="p-8 lg:p-10 flex-1">
+            <p className="font-sans text-[10px] font-bold tracking-[0.2em] text-[#666] uppercase mb-2">Partnership</p>
+            <h4 className="font-bold text-[#1a2d1f] text-2xl mb-6">Community Development & Western Sydney University</h4>
+            
+            <div className="grid md:grid-cols-2 gap-8 text-sm text-[#555] leading-relaxed">
+              <div>
+                <p className="mb-4">
+                  We collaborate with Western Sydney University to support education, community development, and research connected to the Nungon language and local knowledge. Nungon is a previously undescribed Papuan (non-Austronesian) language spoken by roughly 1,000 people in the remote Saruwaged Mountains of the Morobe Province.
+                </p>
+                <p className="mb-4">
+                  Dr. Hannah Sarvasy's groundbreaking immersion fieldwork resulted in the first comprehensive reference work on the language, <em>A Grammar of Nungon (2017)</em>. Her research unveiled a highly sophisticated linguistic system that challenges Western assumptions about how the human brain plans and processes speech.
+                </p>
+                <h5 className="font-bold text-[#1a2d1f] text-base mt-6 mb-2">The Cognitive Marvel</h5>
+                <p>
+                  Nungon relies heavily on a grammatical structure known as clause chaining. Instead of breaking thoughts into short sentences, speakers string many "medial" clauses together, terminating the entire chain with a single "final" verb. While the average chain is 3.4 clauses long, single narrative chains can span up to 22 clauses.
+                </p>
+              </div>
+              
+              <div>
+                <h5 className="font-bold text-[#1a2d1f] text-base mb-2">Switch-Reference & Planning</h5>
+                <p className="mb-4">
+                  The verbs in every non-final clause are obligatorily tagged with a suffix explicitly flagging whether the subject of the upcoming clause will be the same or different. Because Nungon requires a speaker to flag a subject change before it happens, the brain must mentally map out at least two full clauses simultaneously.
+                </p>
+                <h5 className="font-bold text-[#1a2d1f] text-base mb-2">Cultural Registers & Taboos</h5>
+                <p className="mb-4">
+                  Through immersion, Dr. Sarvasy discovered unique socio-linguistic registers. When hunting deep in high-altitude forests, speakers switch to an entirely different vocabulary (Forest Avoidance Registers) to avoid upsetting environmental or ancestral spirits. Youth also utilize specific phonological alterations to create "secret codes."
+                </p>
+                <h5 className="font-bold text-[#1a2d1f] text-base mb-2">Child Language Acquisition</h5>
+                <p>
+                  Tracking Nungon children from infancy, data was added to the global CHILDES database. Researchers discovered that Nungon children go through a strict "two-clause stage" when mastering clause chains, internalizing the complex cognitive planning required for switch-reference suffixes at an astonishingly early age.
+                </p>
+              </div>
             </div>
           </div>
         </div>
