@@ -129,6 +129,10 @@ const AGRICULTURE_SUMMARY_REPORT: SummaryReportEntry[] = [
   // The source supplies row 15's rate only; retaining it reconciles its stated sum of 60 and average of 4.00.
   { number: 15, staff: '—', subjectTitle: '—', subjectCode: '—', level: '—', subjectFileRequired: '—', assessmentComment: 'Source lists No. 15 and rate 4 only.', rate: 4, submissionDate: '—' },
 ];
+const AGRICULTURE_RATE_TOTAL = AGRICULTURE_SUMMARY_REPORT.reduce((total, entry) => total + entry.rate, 0);
+const AGRICULTURE_RATE_AVERAGE = AGRICULTURE_SUMMARY_REPORT.length
+  ? (AGRICULTURE_RATE_TOTAL / AGRICULTURE_SUMMARY_REPORT.length).toFixed(2)
+  : '—';
 
 const CHECKLIST_TEMPLATE: Omit<ChecklistEntry, 'rating' | 'comment' | 'evidence'>[] = [
   {
@@ -1276,7 +1280,6 @@ function AdminDashboard({
 }) {
   const evidenceCount = verification.checklist.reduce((total, entry) => total + entry.evidence.length, 0);
   const ratingCount = verification.checklist.filter((entry) => entry.rating !== null).length;
-  const agricultureRateTotal = AGRICULTURE_SUMMARY_REPORT.reduce((total, entry) => total + entry.rate, 0);
 
   return (
     <main className="admin-shell">
@@ -1320,7 +1323,7 @@ function AdminDashboard({
                 ))}
               </tbody>
               <tfoot>
-                <tr><th colSpan={7}>Summary</th><td>Sum: {agricultureRateTotal}</td><td>Average: {AGRICULTURE_SUMMARY_REPORT.length ? (agricultureRateTotal / AGRICULTURE_SUMMARY_REPORT.length).toFixed(2) : '—'}</td></tr>
+                <tr><th colSpan={7}>Summary</th><td>Sum: {AGRICULTURE_RATE_TOTAL}</td><td>Average: {AGRICULTURE_RATE_AVERAGE}</td></tr>
               </tfoot>
             </table>
           </div>
