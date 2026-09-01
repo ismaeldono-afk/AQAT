@@ -112,31 +112,30 @@ const DEFAULT_PLATFORM_NAME = 'Academic Quality, Assurance of Teaching';
 const assetUrl = (filename: string) => `${import.meta.env.BASE_URL}assets/${filename}`;
 const AGRICULTURE_SUMMARY_COMMENT = 'Fully submitted neatly stacked on GD/CD';
 const AGRICULTURE_SUMMARY_REPORT: SummaryReportEntry[] = [
-  [1, 'Prof. R Rao', 'Soil Fertility Management', 'AG 213'],
-  [2, 'Dr. Jaya Prakash', 'Physiology and Anatomy of Animals', 'AG114'],
-  [3, 'Dr. Jaya Prakash', 'Animal Health and Diseases', 'AG313'],
-  [4, 'Dr. S. Poloma', 'Agronomy I', 'AG211'],
-  [5, 'Prof. Danbaro', 'Animal Breeding', 'AG412'],
-  [6, 'Dr. Bue, Ms. Parau', 'Agricultural Extension', 'AG414'],
-  [7, 'Mrs. Maino & Ms. Parau', 'Professional Practice & Communication', 'AG113'],
-  [8, 'Professor Tom Okpul, Dr. Victor Eze', 'Research Methods 1', 'AG312'],
-  [9, 'Dr. Ban', 'Crop Diseases', 'AG314'],
-  [10, 'Dr. Ban, Prof. Rao', 'Biochemistry', 'AG111'],
-  [11, 'Dr. Michael', 'Environment and Sustainability', 'AG411'],
-  [12, 'Dr. Pandi, Mr. Nano', 'Animal Management', 'AG311'],
-  [13, 'Dr. Eze, Mr. Kiwa', 'Introduction to Agric. Economics', 'AG112'],
-  [14, 'Dr. Dotaona', 'Agric Entomology', 'AG214'],
-].map(([number, staff, subjectTitle, subjectCode]) => ({
-  number,
-  staff,
-  subjectTitle,
-  subjectCode,
-  level: 'UG',
-  subjectFileRequired: 'Yes',
+  { number: 1, staff: 'Prof. R Rao', subjectTitle: 'Soil Fertility Management', subjectCode: 'AG 213' },
+  { number: 2, staff: 'Dr. Jaya Prakash', subjectTitle: 'Physiology and Anatomy of Animals', subjectCode: 'AG114' },
+  { number: 3, staff: 'Dr. Jaya Prakash', subjectTitle: 'Animal Health and Diseases', subjectCode: 'AG313' },
+  { number: 4, staff: 'Dr. S. Poloma', subjectTitle: 'Agronomy I', subjectCode: 'AG211' },
+  { number: 5, staff: 'Prof. Danbaro', subjectTitle: 'Animal Breeding', subjectCode: 'AG412' },
+  { number: 6, staff: 'Dr. Bue, Ms. Parau', subjectTitle: 'Agricultural Extension', subjectCode: 'AG414' },
+  { number: 7, staff: 'Mrs. Maino & Ms. Parau', subjectTitle: 'Professional Practice & Communication', subjectCode: 'AG113' },
+  { number: 8, staff: 'Professor Tom Okpul, Dr. Victor Eze', subjectTitle: 'Research Methods 1', subjectCode: 'AG312' },
+  { number: 9, staff: 'Dr. Ban', subjectTitle: 'Crop Diseases', subjectCode: 'AG314' },
+  { number: 10, staff: 'Dr. Ban, Prof. Rao', subjectTitle: 'Biochemistry', subjectCode: 'AG111' },
+  { number: 11, staff: 'Dr. Michael', subjectTitle: 'Environment and Sustainability', subjectCode: 'AG411' },
+  { number: 12, staff: 'Dr. Pandi, Mr. Nano', subjectTitle: 'Animal Management', subjectCode: 'AG311' },
+  { number: 13, staff: 'Dr. Eze, Mr. Kiwa', subjectTitle: 'Introduction to Agric. Economics', subjectCode: 'AG112' },
+  { number: 14, staff: 'Dr. Dotaona', subjectTitle: 'Agric Entomology', subjectCode: 'AG214' },
+].map((entry) => ({
+  ...entry,
+  level: 'UG' as const,
+  subjectFileRequired: 'Yes' as const,
   assessmentComment: AGRICULTURE_SUMMARY_COMMENT,
   rate: 4,
   submissionDate: '17/07/2026',
 }));
+const AGRICULTURE_REPORTED_SUM = 60;
+const AGRICULTURE_REPORTED_AVERAGE = 4;
 
 const CHECKLIST_TEMPLATE: Omit<ChecklistEntry, 'rating' | 'comment' | 'evidence'>[] = [
   {
@@ -1284,6 +1283,7 @@ function AdminDashboard({
 }) {
   const evidenceCount = verification.checklist.reduce((total, entry) => total + entry.evidence.length, 0);
   const ratingCount = verification.checklist.filter((entry) => entry.rating !== null).length;
+  const agricultureRateTotal = AGRICULTURE_SUMMARY_REPORT.reduce((total, entry) => total + entry.rate, 0);
 
   return (
     <main className="admin-shell">
@@ -1327,7 +1327,7 @@ function AdminDashboard({
                 ))}
               </tbody>
               <tfoot>
-                <tr><th colSpan={7}>Reported summary</th><td>Sum 60</td><td>Average 4.00</td></tr>
+                <tr><th colSpan={7}>Reported source summary (captured rate total: {agricultureRateTotal})</th><td>Sum {AGRICULTURE_REPORTED_SUM}</td><td>Average {AGRICULTURE_REPORTED_AVERAGE.toFixed(2)}</td></tr>
               </tfoot>
             </table>
           </div>
