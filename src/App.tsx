@@ -67,8 +67,8 @@ interface SummaryReportEntry {
   staff: string;
   subjectTitle: string;
   subjectCode: string;
-  level: 'UG' | 'PG';
-  subjectFileRequired: 'Yes' | 'No';
+  level: string;
+  subjectFileRequired: string;
   assessmentComment: string;
   rate: number;
   submissionDate: string;
@@ -112,30 +112,22 @@ const DEFAULT_PLATFORM_NAME = 'Academic Quality, Assurance of Teaching';
 const assetUrl = (filename: string) => `${import.meta.env.BASE_URL}assets/${filename}`;
 const AGRICULTURE_SUMMARY_COMMENT = 'Fully submitted neatly stacked on GD/CD';
 const AGRICULTURE_SUMMARY_REPORT: SummaryReportEntry[] = [
-  { number: 1, staff: 'Prof. R Rao', subjectTitle: 'Soil Fertility Management', subjectCode: 'AG 213' },
-  { number: 2, staff: 'Dr. Jaya Prakash', subjectTitle: 'Physiology and Anatomy of Animals', subjectCode: 'AG114' },
-  { number: 3, staff: 'Dr. Jaya Prakash', subjectTitle: 'Animal Health and Diseases', subjectCode: 'AG313' },
-  { number: 4, staff: 'Dr. S. Poloma', subjectTitle: 'Agronomy I', subjectCode: 'AG211' },
-  { number: 5, staff: 'Prof. Danbaro', subjectTitle: 'Animal Breeding', subjectCode: 'AG412' },
-  { number: 6, staff: 'Dr. Bue, Ms. Parau', subjectTitle: 'Agricultural Extension', subjectCode: 'AG414' },
-  { number: 7, staff: 'Mrs. Maino & Ms. Parau', subjectTitle: 'Professional Practice & Communication', subjectCode: 'AG113' },
-  { number: 8, staff: 'Professor Tom Okpul, Dr. Victor Eze', subjectTitle: 'Research Methods 1', subjectCode: 'AG312' },
-  { number: 9, staff: 'Dr. Ban', subjectTitle: 'Crop Diseases', subjectCode: 'AG314' },
-  { number: 10, staff: 'Dr. Ban, Prof. Rao', subjectTitle: 'Biochemistry', subjectCode: 'AG111' },
-  { number: 11, staff: 'Dr. Michael', subjectTitle: 'Environment and Sustainability', subjectCode: 'AG411' },
-  { number: 12, staff: 'Dr. Pandi, Mr. Nano', subjectTitle: 'Animal Management', subjectCode: 'AG311' },
-  { number: 13, staff: 'Dr. Eze, Mr. Kiwa', subjectTitle: 'Introduction to Agric. Economics', subjectCode: 'AG112' },
-  { number: 14, staff: 'Dr. Dotaona', subjectTitle: 'Agric Entomology', subjectCode: 'AG214' },
-].map((entry) => ({
-  ...entry,
-  level: 'UG' as const,
-  subjectFileRequired: 'Yes' as const,
-  assessmentComment: AGRICULTURE_SUMMARY_COMMENT,
-  rate: 4,
-  submissionDate: '17/07/2026',
-}));
-const AGRICULTURE_REPORTED_SUM = 60;
-const AGRICULTURE_REPORTED_AVERAGE = 4;
+  { number: 1, staff: 'Prof. R Rao', subjectTitle: 'Soil Fertility Management', subjectCode: 'AG 213', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+  { number: 2, staff: 'Dr. Jaya Prakash', subjectTitle: 'Physiology and Anatomy of Animals', subjectCode: 'AG114', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+  { number: 3, staff: 'Dr. Jaya Prakash', subjectTitle: 'Animal Health and Diseases', subjectCode: 'AG313', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+  { number: 4, staff: 'Dr. S. Poloma', subjectTitle: 'Agronomy I', subjectCode: 'AG211', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+  { number: 5, staff: 'Prof. Danbaro', subjectTitle: 'Animal Breeding', subjectCode: 'AG412', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+  { number: 6, staff: 'Dr. Bue, Ms. Parau', subjectTitle: 'Agricultural Extension', subjectCode: 'AG414', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+  { number: 7, staff: 'Mrs. Maino & Ms. Parau', subjectTitle: 'Professional Practice & Communication', subjectCode: 'AG113', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+  { number: 8, staff: 'Professor Tom Okpul, Dr. Victor Eze', subjectTitle: 'Research Methods 1', subjectCode: 'AG312', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+  { number: 9, staff: 'Dr. Ban', subjectTitle: 'Crop Diseases', subjectCode: 'AG314', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+  { number: 10, staff: 'Dr. Ban, Prof. Rao', subjectTitle: 'Biochemistry', subjectCode: 'AG111', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+  { number: 11, staff: 'Dr. Michael', subjectTitle: 'Environment and Sustainability', subjectCode: 'AG411', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+  { number: 12, staff: 'Dr. Pandi, Mr. Nano', subjectTitle: 'Animal Management', subjectCode: 'AG311', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+  { number: 13, staff: 'Dr. Eze, Mr. Kiwa', subjectTitle: 'Introduction to Agric. Economics', subjectCode: 'AG112', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+  { number: 14, staff: 'Dr. Dotaona', subjectTitle: 'Agric Entomology', subjectCode: 'AG214', level: 'UG', subjectFileRequired: 'Yes', assessmentComment: AGRICULTURE_SUMMARY_COMMENT, rate: 4, submissionDate: '17/07/2026' },
+  { number: 15, staff: 'Not provided in source', subjectTitle: 'Not provided in source', subjectCode: 'Not provided', level: 'Not provided', subjectFileRequired: 'Not provided', assessmentComment: 'Not provided in source', rate: 4, submissionDate: 'Not provided' },
+];
 
 const CHECKLIST_TEMPLATE: Omit<ChecklistEntry, 'rating' | 'comment' | 'evidence'>[] = [
   {
@@ -1327,7 +1319,7 @@ function AdminDashboard({
                 ))}
               </tbody>
               <tfoot>
-                <tr><th colSpan={7}>Reported source summary (captured rate total: {agricultureRateTotal})</th><td>Sum {AGRICULTURE_REPORTED_SUM}</td><td>Average {AGRICULTURE_REPORTED_AVERAGE.toFixed(2)}</td></tr>
+                <tr><th colSpan={7}>Summary</th><td>Sum {agricultureRateTotal}</td><td>Average {(agricultureRateTotal / AGRICULTURE_SUMMARY_REPORT.length).toFixed(2)}</td></tr>
               </tfoot>
             </table>
           </div>
